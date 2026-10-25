@@ -1,0 +1,1872 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Abdelhakim Boudra · Data science">
+<meta property="og:description" content="Data scientist en formation, du pipeline de données au modèle prédictif et au tableau de bord. Stage de 6 mois à partir de mars 2027.">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Abdelhakim Boudra</title>
+<meta name="description" content="Abdelhakim Boudra, data scientist en formation : pipelines de données, machine learning et BI. Stage de 6 mois à partir de mars 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap">
+<style>
+/* Layout: floating pill nav · petrol hero with a live, draggable ontology graph · paper "dossier" sections on a hairline grid (label column + text column) · polaroid figure ring · petrol footer under a histogram fringe */
+:root{
+  --paper:#F0EDE6; --paper-hi:#FBFAF6; --ink:#16191A; --ink-2:#434B4D; --muted:#7A8283; --line:rgba(22,25,26,.11);
+  --petrol:#133A44; --petrol-2:#0E2E36; --cream:#EEE8DC; --cream-2:rgba(238,232,220,.64); --cream-3:rgba(238,232,220,.16);
+  --iode:#C98A3E; --pill:#141617;
+  --c1:#00809A; --c2:#C7802C; --c0:rgba(22,25,26,.13); --chl:170px; --warn:#B0432A;
+  --display:"Faculty Glyphic","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --edge:clamp(16px,3.4vw,52px);
+  color-scheme:light;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.menu-open{overflow:hidden}
+::selection{background:var(--iode);color:var(--ink)}
+:focus-visible{outline:2px solid var(--iode);outline-offset:3px}
+a{color:inherit}
+button{font:inherit;color:inherit}
+h1,h2,h3,h4{text-wrap:balance}
+.wrap{padding-left:max(var(--edge),env(safe-area-inset-left,0px));padding-right:max(var(--edge),env(safe-area-inset-right,0px))}
+.label{font:500 11px/1.45 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
+section,footer{scroll-margin-top:72px}
+
+/* ---------- pill nav ---------- */
+.pill{position:fixed;z-index:60;top:calc(env(safe-area-inset-top,0px) + 14px);left:50%;transform:translateX(-50%);
+  width:min(520px,calc(100% - 32px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px)));height:46px;
+  display:flex;align-items:center;justify-content:space-between;padding:0 6px;background:var(--pill);color:var(--cream);
+  border-radius:3px;box-shadow:0 14px 34px -14px rgba(0,0,0,.45)}
+.pill-btn{display:grid;place-items:center;width:38px;height:38px;border:0;background:none;color:var(--cream);cursor:pointer;border-radius:2px;text-decoration:none}
+.pill-btn:hover{background:rgba(238,232,220,.08)}
+.pill-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5}
+.mark{font:400 24px/1 var(--display);color:var(--cream);text-decoration:none;letter-spacing:-.02em;padding:4px 8px}
+.ico-x{display:none}
+.menu-open .ico-burger{display:none}
+.menu-open .ico-x{display:block}
+
+.menu{position:fixed;inset:0;z-index:55;background:var(--petrol-2);color:var(--cream);overflow:auto}
+.menu-in{padding-top:calc(env(safe-area-inset-top,0px) + 108px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 40px);max-width:1200px;margin:0 auto}
+.menu .label{color:var(--cream-2)}
+.menu-list{list-style:none;margin:28px 0 48px;padding:0;display:grid;gap:4px}
+.menu-list a{display:flex;align-items:baseline;gap:20px;text-decoration:none;font:400 clamp(36px,6.4vw,76px)/1.08 var(--display);letter-spacing:-.015em;padding:6px 0;border-bottom:1px solid var(--cream-3)}
+.menu-list a span{font:500 11px var(--mono);letter-spacing:.14em;color:var(--cream-2);min-width:2.4em}
+.menu-list a:hover{color:var(--iode)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:var(--petrol);color:var(--cream);min-height:clamp(600px,88vh,880px);display:flex;flex-direction:column;overflow:hidden}
+.hero-grid{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);align-items:center;gap:24px;padding-block:118px 12px}
+.hero-copy{position:relative;z-index:2;display:grid;gap:22px;justify-items:start;max-width:640px}
+.hero .label{color:var(--cream-2)}
+.hero h1{font:400 clamp(46px,6.2vw,94px)/.98 var(--display);letter-spacing:-.018em;margin:0;color:var(--cream)}
+.hero-sub{font:300 clamp(19px,1.7vw,25px)/1.42 var(--sans);margin:0;max-width:31ch;color:var(--cream)}
+.btn{display:inline-flex;align-items:center;gap:14px;background:var(--pill);color:var(--cream);text-decoration:none;font:500 11px/1 var(--mono);
+  letter-spacing:.16em;text-transform:uppercase;padding:12px 12px 12px 18px;border-radius:2px;border:0;cursor:pointer;transition:transform .25s ease,background .25s ease}
+.btn:hover{transform:translateY(-2px);background:#000}
+.btn i{display:inline-grid;place-items:center;width:22px;height:22px;border:1px solid rgba(238,232,220,.45);font-style:normal;font-size:12px}
+.btn-sm{padding:10px 14px;font-size:10.5px}
+.hero-stage{position:relative;align-self:stretch;min-height:440px;margin-top:-118px;margin-right:calc(-1 * max(var(--edge),env(safe-area-inset-right,0px)))}
+.hero-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y;cursor:default}
+.grab{position:absolute;left:0;top:0;width:66px;height:66px;margin:-33px 0 0 -33px;border-radius:50%;background:var(--pill);color:var(--cream);
+  display:grid;place-items:center;font:500 9px var(--mono);letter-spacing:.14em;text-transform:uppercase;pointer-events:none;opacity:0;
+  transform:scale(.6);transition:opacity .2s ease,transform .2s ease;will-change:left,top}
+.grab.on{opacity:1;transform:scale(1)}
+.grab.big{transform:scale(1.18);background:var(--iode);color:var(--ink)}
+.stage-cap{position:absolute;right:max(var(--edge),env(safe-area-inset-right,0px));bottom:10px;text-align:right;pointer-events:none}
+.hero-bar{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:16px 22px}
+.acts{display:flex;flex-wrap:wrap;gap:10px 26px;font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.acts a{text-decoration:none;color:var(--cream)}
+.acts a span,.acts .clock{color:var(--cream-2)}
+.acts a span{margin-right:8px}
+.acts .clock b{color:var(--cream);font-weight:500;margin-left:6px;font-variant-numeric:tabular-nums}
+.acts a:hover{color:var(--iode)}
+
+/* ---------- dossier sections ---------- */
+.dossier{position:relative;background:var(--paper);overflow-x:clip}
+.foot{overflow-x:clip}
+.dossier::before{content:"";position:absolute;top:0;bottom:0;left:max(var(--edge),env(safe-area-inset-left,0px));right:max(var(--edge),env(safe-area-inset-right,0px));
+  background-image:linear-gradient(var(--line),var(--line)),linear-gradient(var(--line),var(--line)),linear-gradient(var(--line),var(--line));
+  background-size:1px 100%;background-repeat:no-repeat;background-position:25% 0,50% 0,75% 0;pointer-events:none}
+.dossier>*{position:relative}
+.row{display:grid;grid-template-columns:25% minmax(0,1fr);padding-block:clamp(72px,9vw,128px) 0}
+.row>:last-child{padding-left:clamp(0px,2vw,28px);max-width:50rem;min-width:0}
+.lede{font:300 clamp(21px,2.05vw,30px)/1.46 var(--sans);margin:0;color:var(--ink);text-wrap:pretty}
+.hint{margin-top:18px}
+.h-touch{display:none}
+@media (hover:none){.h-hover{display:none}.h-touch{display:inline}}
+
+.reveal{display:inline;background:none;border:0;padding:0;margin:0;cursor:pointer;font:inherit;color:inherit;line-height:inherit;
+  text-decoration:underline;text-decoration-color:rgba(22,25,26,.35);text-decoration-thickness:1px;text-underline-offset:.22em;transition:text-decoration-color .2s}
+.reveal:hover,.reveal:focus-visible{text-decoration-color:var(--iode)}
+.chip{display:inline-block;width:1.55em;height:1.05em;margin-left:.32em;vertical-align:-.12em;border-radius:2px;overflow:hidden;object-fit:cover;background:var(--f-bg,#ddd)}
+.chip svg{display:block;width:100%;height:100%}
+
+/* polaroid */
+.pol{display:block;background:var(--paper-hi);padding:8px 8px 0;border-radius:1px;
+  box-shadow:0 1px 0 rgba(22,25,26,.05),0 18px 34px -18px rgba(22,25,26,.45),0 2px 6px rgba(22,25,26,.07)}
+.pol-img{display:block;aspect-ratio:24/17;background:var(--f-bg);overflow:hidden}
+.pol-img svg,.pol-img img{display:block;width:100%;height:100%;object-fit:cover}
+.pol-cap{display:flex;justify-content:space-between;gap:8px;font:500 9px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:10px 2px 11px}
+.tone-dark{--f-bg:#133A44;--f-ink:#EEE8DC;--f-mut:rgba(238,232,220,.45);--f-acc:#DDA35A;--f-soft:rgba(238,232,220,.1)}
+.tone-paper{--f-bg:#E8E4DA;--f-ink:#16191A;--f-mut:#959C9C;--f-acc:#C17A2A;--f-soft:rgba(22,25,26,.06)}
+.tone-iode{--f-bg:#E6C597;--f-ink:#16191A;--f-mut:rgba(22,25,26,.45);--f-acc:#133A44;--f-soft:rgba(255,255,255,.28)}
+.ft{font-family:var(--mono);font-size:8px;letter-spacing:.03em;fill:var(--f-ink)}
+.ft-m{fill:var(--f-mut)}
+.ft-b{font-weight:500}
+
+.preview{position:fixed;left:0;top:0;z-index:70;width:236px;pointer-events:none;opacity:0;transition:opacity .18s ease}
+.preview.on{opacity:1}
+.pol-photo{background:#ddd}
+
+/* ---------- results ring ---------- */
+.results .ring-wrap{padding-block:clamp(72px,8vw,112px) 0}
+.ring{position:relative;height:clamp(740px,90vh,900px)}
+.ring-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(430px,46%);text-align:center;display:grid;gap:16px;justify-items:center;z-index:1}
+.ring-center h2{font:400 clamp(26px,2.5vw,38px)/1.16 var(--display);letter-spacing:-.01em;margin:0}
+.card{position:absolute;left:50%;top:50%;width:216px;padding:0;border:0;background:none;cursor:pointer;z-index:2;text-align:left;
+  transform:translate(-50%,-50%) translate(var(--tx,0px),var(--ty,0px)) rotate(var(--rot,0deg));transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.card .pol{transition:box-shadow .3s ease,outline-color .3s ease;outline:2px solid transparent;outline-offset:3px}
+.card:hover,.card:focus-visible{z-index:4;transform:translate(-50%,-50%) translate(var(--tx,0px),var(--ty,0px)) rotate(0deg) scale(1.06)}
+.card:focus-visible{outline:none}
+.card:focus-visible .pol{outline-color:var(--iode)}
+.card:hover .pol{box-shadow:0 1px 0 rgba(22,25,26,.05),0 28px 44px -20px rgba(22,25,26,.55),0 2px 6px rgba(22,25,26,.08)}
+.card.is-sel .pol{outline-color:var(--petrol)}
+.card.is-sel .pol-cap span:first-child{color:var(--petrol)}
+
+.detail{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(28px,5vw,72px);align-items:start;
+  margin-top:clamp(40px,5vw,72px);padding-top:clamp(28px,4vw,48px);border-top:1px solid var(--line);scroll-margin-top:90px}
+.detail-figs{display:grid;gap:14px;justify-items:start}
+.detail-pol{width:min(100%,460px);transform:rotate(-1.5deg)}
+.fig-switch{display:flex;gap:8px}
+.fig-switch button,.detail-nav button,.tl-link{font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;background:none;border:0;
+  border-bottom:1px solid var(--line);padding:8px 2px;cursor:pointer;color:var(--ink-2)}
+.fig-switch button[aria-pressed="true"]{color:var(--petrol);border-bottom-color:var(--petrol)}
+.fig-switch button:hover,.detail-nav button:hover,.tl-link:hover{color:var(--ink);border-bottom-color:var(--iode)}
+.detail-body{display:grid;gap:14px;min-width:0}
+.detail-body h3{font:400 clamp(32px,3.4vw,50px)/1.02 var(--display);letter-spacing:-.015em;margin:0}
+.detail-sub{margin:-4px 0 6px;font:300 clamp(18px,1.5vw,21px)/1.4 var(--sans);color:var(--ink-2)}
+.kpis{list-style:none;margin:6px 0;padding:14px 0;display:flex;flex-wrap:wrap;gap:16px 40px;border-block:1px solid var(--line)}
+.kpis li{display:grid;gap:4px}
+.kpis b{font:300 clamp(28px,2.6vw,38px)/1 var(--sans);color:var(--petrol);letter-spacing:-.01em}
+.kpis span{font:500 10px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);max-width:16ch}
+.bullets{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.bullets li{position:relative;padding-left:20px;font:400 16px/1.6 var(--sans);color:var(--ink-2);max-width:64ch}
+.bullets li::before{content:"";position:absolute;left:2px;top:.68em;width:6px;height:6px;background:var(--petrol)}
+.tags{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.tags li{font:500 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--line);padding:7px 9px;border-radius:1px;background:rgba(255,255,255,.35)}
+.detail-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
+.note{margin-top:28px}
+
+/* ---------- protocol ---------- */
+.steps{list-style:none;margin:44px 0 0;padding:0}
+.step{display:grid;grid-template-columns:48px minmax(0,.8fr) minmax(0,1.4fr);gap:20px;padding:28px 0;border-top:1px solid var(--line);opacity:var(--o,1);transition:opacity .35s linear}
+.step-n{font:500 11px/1 var(--mono);color:var(--muted);padding-top:10px;font-variant-numeric:tabular-nums}
+.step h3{font:400 clamp(25px,2.3vw,33px)/1.1 var(--display);margin:0;letter-spacing:-.01em}
+.step p{margin:4px 0 0;font:400 16px/1.62 var(--sans);color:var(--ink-2)}
+
+/* ---------- parcours ---------- */
+.cv-h{margin:64px 0 6px}
+.cv-h:first-child{margin-top:0}
+.tl{list-style:none;margin:0;padding:0}
+.tl-row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:22px 0;border-top:1px solid var(--line)}
+.tl-date{font:500 11.5px/1.4 var(--mono);letter-spacing:.06em;color:var(--muted);padding-top:7px;font-variant-numeric:tabular-nums}
+.tl-row h4{font:400 clamp(21px,1.9vw,27px)/1.2 var(--display);margin:0;letter-spacing:-.005em}
+.tl-row h4 span{color:var(--ink-2)}
+.tl-row .label{margin-top:6px}
+.tl-row p.txt{margin:8px 0 0;font:400 16px/1.6 var(--sans);color:var(--ink-2);max-width:62ch}
+.tl-link{margin-top:12px}
+.skills{margin:0;display:grid}
+.skills div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:14px 0;border-top:1px solid var(--line)}
+.skills dt{font:500 11px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.skills dd{margin:0;font:400 16px/1.6 var(--sans);color:var(--ink-2)}
+
+.poso{padding-bottom:clamp(88px,11vw,150px)}
+.poso-text{font:400 clamp(28px,3.3vw,48px)/1.16 var(--display);letter-spacing:-.012em;margin:0 0 22px;text-wrap:balance}
+
+/* ---------- footer ---------- */
+.foot{background:var(--petrol);color:var(--cream)}
+.fringe{display:flex;align-items:flex-end;gap:2px;height:72px;background:var(--paper)}
+.fringe i{flex:1;background:var(--petrol);border-radius:1px 1px 0 0;min-width:0}
+.foot .row{padding-block:clamp(56px,7vw,96px) 0}
+.foot .label{color:var(--cream-2)}
+.foot-h{font:400 clamp(42px,6.6vw,100px)/1.02 var(--display);letter-spacing:-.018em;margin:0 0 34px;max-width:11em}
+.mail-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 22px}
+.mail{font:300 clamp(20px,2.4vw,32px)/1.3 var(--sans);border-bottom:1px solid var(--cream-2);overflow-wrap:anywhere;user-select:all;-webkit-user-select:all}
+.copy{background:none;border:0;padding:6px 0;cursor:pointer;font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cream-2)}
+.copy:hover{color:var(--iode)}
+.foot-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px 24px;margin-top:clamp(64px,9vw,120px);padding-top:22px;border-top:1px solid var(--cream-3)}
+.links{display:flex;flex-wrap:wrap;gap:10px 28px;list-style:none;margin:0;padding:0;font:400 14px var(--sans)}
+.links a{text-decoration:none}
+.links a:hover{color:var(--iode)}
+.foot-bar .label b{color:var(--cream);font-weight:500;font-variant-numeric:tabular-nums}
+.foot-legal{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:18px calc(env(safe-area-inset-bottom,0px) + 26px);font:400 12px var(--sans);color:var(--cream-2)}
+.foot-legal a{text-decoration:none}
+.foot-legal a:hover{color:var(--cream)}
+
+
+/* ---------- grain ---------- */
+.grain{position:relative}
+.grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.11;mix-blend-mode:soft-light;z-index:3;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+/* ---------- pill progress + section ---------- */
+.pill{overflow:hidden}
+.pill-prog{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--iode);transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
+.mark{position:relative;display:grid;place-items:center;min-width:190px;height:38px}
+.mark-ab,.mark-sec{grid-area:1/1;transition:opacity .3s ease,transform .3s ease}
+.mark-sec{font:500 10.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--cream);opacity:0;transform:translateY(6px);white-space:nowrap}
+.pill.scrolled .mark-ab{opacity:0;transform:translateY(-6px)}
+.pill.scrolled .mark-sec{opacity:1;transform:none}
+
+/* ---------- stats ---------- */
+.stats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));border-top:1px solid var(--line)}
+.stats li{border-bottom:1px solid var(--line)}
+.stat{display:grid;gap:10px;align-content:start;width:100%;height:100%;text-align:left;background:none;border:0;padding:22px 18px 22px 0;cursor:pointer;color:inherit}
+.stat b{font:300 clamp(36px,3.6vw,52px)/1 var(--sans);letter-spacing:-.025em;color:var(--petrol);transition:color .2s;white-space:nowrap}
+.stat span{font:500 10.5px/1.45 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);max-width:19ch}
+.stat:hover b,.stat:focus-visible b{color:var(--c2)}
+.stat:hover span::after,.stat:focus-visible span::after{content:" →";color:var(--ink)}
+
+/* ---------- filters + tilt ---------- */
+.filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px;position:relative;z-index:5;margin-bottom:32px}
+.filters .label{margin-right:6px}
+.chipf{font:500 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:9px 13px;border:1px solid var(--line);background:rgba(255,255,255,.45);
+  color:var(--ink-2);border-radius:999px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.chipf:hover{border-color:var(--ink-2);color:var(--ink)}
+.chipf[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.card{transition:transform .6s cubic-bezier(.2,.7,.2,1),opacity .35s ease,filter .35s ease}
+.card.is-dim{opacity:.2;filter:saturate(0)}
+.card:hover,.card:focus-visible{transform:translate(-50%,-50%) translate(var(--tx,0px),var(--ty,0px)) perspective(800px) rotateX(var(--tiltX,0deg)) rotateY(var(--tiltY,0deg)) scale(1.06)}
+
+/* ---------- tools band ---------- */
+.band{background:var(--petrol);color:var(--cream);overflow:hidden;padding-block:24px}
+.band-track{display:flex;width:max-content;animation:marquee 52s linear infinite}
+.band:hover .band-track{animation-play-state:paused}
+.band-track span{display:inline-flex;align-items:center;gap:40px;padding-right:40px;font:400 clamp(26px,3vw,42px)/1 var(--display);letter-spacing:-.01em;white-space:nowrap}
+.band-track span::after{content:"";width:7px;height:7px;background:var(--iode);transform:rotate(45deg)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ---------- protocol links ---------- */
+.step-links{grid-column:3;display:flex;flex-wrap:wrap;gap:6px;margin-top:-4px}
+.step-links button,.step-links a{font:500 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--line);
+  background:rgba(255,255,255,.4);padding:7px 9px;border-radius:999px;cursor:pointer;text-decoration:none}
+.step-links button:hover,.step-links a:hover{border-color:var(--c2);color:var(--ink)}
+.step-links .try{border-style:dashed;border-color:var(--c2);color:var(--ink)}
+
+/* ---------- lab ---------- */
+.lab{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(24px,4vw,60px);align-items:start;margin-top:40px}
+.lab-viz{margin:0;background:var(--paper-hi);padding:16px 16px 14px;box-shadow:0 1px 0 rgba(22,25,26,.05),0 18px 34px -18px rgba(22,25,26,.35)}
+.lab-viz svg{display:block;width:100%;height:auto;touch-action:pan-y}
+.d-tp{fill:var(--c2)} .d-fn{fill:none;stroke:var(--c2);stroke-width:1.4} .d-fp{fill:var(--c1)} .d-tn{fill:var(--c0)}
+.lab-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font:500 10.5px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.lab-legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:10px;height:10px;border-radius:50%;display:inline-block;box-sizing:border-box}
+.sw-tp{background:var(--c2)} .sw-fn{border:1.6px solid var(--c2)} .sw-fp{background:var(--c1)} .sw-tn{background:var(--c0)}
+.lab-ctrl{display:grid;gap:18px;min-width:0}
+.ctrl{display:grid;gap:8px}
+.ctrl label{display:flex;justify-content:space-between;gap:12px;font:500 10.5px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ctrl output{color:var(--ink);font-variant-numeric:tabular-nums}
+.ctrl input[type=range]{width:100%;margin:0;accent-color:var(--c1)}
+.ctrl input[type=range]:disabled{opacity:.35}
+.naive{justify-self:start}
+.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.metric{background:var(--paper);padding:14px 14px 12px;display:grid;gap:6px}
+.metric b{font:300 clamp(28px,2.6vw,38px)/1 var(--sans);color:var(--ink);letter-spacing:-.01em}
+.metric.key b{color:var(--petrol)}
+.metric span{font:500 10px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lab-say{font:300 18px/1.5 var(--sans);color:var(--ink);margin:0;min-height:3em}
+.cm{width:100%;border-collapse:collapse;font:400 14px/1.3 var(--sans);color:var(--ink-2)}
+.cm caption{text-align:left;padding-bottom:8px}
+.cm th,.cm td{border:1px solid var(--line);padding:8px 10px}
+.cm td{text-align:right;font-variant-numeric:tabular-nums}
+.cm th{font:500 10px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left}
+
+/* ---------- tooltip ---------- */
+.tip{position:fixed;left:0;top:0;z-index:80;pointer-events:none;background:var(--ink);color:var(--paper);font:400 12.5px/1.45 var(--sans);
+  padding:9px 11px;border-radius:2px;opacity:0;transition:opacity .12s;max-width:250px;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.tip.on{opacity:1}
+.tip b{font-weight:500}
+
+/* ---------- chronology ---------- */
+.chrono-legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin:4px 0 22px;font:500 10.5px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.chrono-legend span{display:inline-flex;align-items:center;gap:8px}
+.lg{width:18px;height:8px;border-radius:4px;display:inline-block;box-sizing:border-box}
+.lg-f{background:var(--c1)} .lg-e{background:var(--c2)} .lg-o{border:1.5px dashed var(--ink-2)}
+.chrono-grid{position:relative;padding-top:14px}
+.ch-row{display:grid;grid-template-columns:var(--chl) minmax(0,1fr);align-items:center;min-height:38px}
+.ch-name{font:400 14px/1.2 var(--sans);color:var(--ink);padding-right:12px;min-width:0}
+.ch-name small{display:block;margin-top:2px;font:500 9.5px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ch-track{position:relative;height:38px}
+.ch-bar{position:absolute;top:50%;height:10px;margin-top:-5px;border-radius:4px;border:0;padding:0;cursor:pointer;min-width:6px;box-sizing:border-box}
+.ch-bar::before{content:"";position:absolute;inset:-10px -4px}
+.ch-bar.f{background:var(--c1)} .ch-bar.e{background:var(--c2)} .ch-bar.o{background:transparent;border:1.5px dashed var(--ink-2);cursor:default}
+.ch-bar:hover,.ch-bar:focus-visible{outline:none;box-shadow:0 0 0 2px var(--paper),0 0 0 3.5px var(--ink)}
+.ch-lines{position:absolute;top:0;bottom:24px;left:var(--chl);right:0;pointer-events:none}
+.ch-lines i{position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+.ch-now{position:absolute;top:-2px;bottom:0;width:0;border-left:1.5px solid var(--petrol)}
+.ch-now span{position:absolute;top:-12px;left:5px;font:500 9.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--petrol);white-space:nowrap}
+.ch-axis{display:grid;grid-template-columns:var(--chl) minmax(0,1fr)}
+.ch-ticks{position:relative;height:24px;border-top:1px solid var(--line)}
+.ch-ticks span{position:absolute;top:7px;transform:translateX(-50%);font:500 10px/1 var(--mono);letter-spacing:.06em;color:var(--muted);font-variant-numeric:tabular-nums}
+
+@media (max-width:900px){
+  .lab{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:720px){
+  :root{--chl:112px}
+  .step-links{grid-column:2}
+  .ch-name{font-size:12.5px}
+  .ch-name small{font-size:8.5px;letter-spacing:.06em}
+  .mark{min-width:150px}
+  .stat{padding-right:12px}
+  .cap-hint{display:none}
+}
+
+
+/* ---------- lab tabs & panels ---------- */
+.lab-tabs{display:flex;gap:28px;margin-top:40px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:thin}
+.lab-tab{flex:none;display:grid;gap:5px;text-align:left;background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:12px 0 14px;cursor:pointer;color:var(--muted);transition:color .2s,border-color .2s}
+.lab-tab span{font:500 10px/1 var(--mono);letter-spacing:.14em}
+.lab-tab b{font:400 clamp(19px,1.7vw,24px)/1.1 var(--display);white-space:nowrap}
+.lab-tab:hover{color:var(--ink-2)}
+.lab-tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--petrol)}
+.lab-tab[aria-selected="true"] span{color:var(--c1)}
+.lab-panel{padding-top:30px}
+.lab-head{display:grid;gap:10px;max-width:62rem}
+.lab-head h3{font:400 clamp(26px,2.6vw,38px)/1.1 var(--display);letter-spacing:-.01em;margin:0}
+.lab-head p{margin:0;font:300 clamp(17px,1.35vw,19px)/1.55 var(--sans);color:var(--ink-2);max-width:66ch}
+.lab-links{display:flex;flex-wrap:wrap;gap:6px 18px}
+.lab-proj{justify-self:start;font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;background:none;border:0;border-bottom:1px solid var(--line);padding:8px 0;cursor:pointer;color:var(--petrol)}
+.lab-proj:hover{border-bottom-color:var(--c2);color:var(--ink)}
+.lab-panel .lab{margin-top:24px}
+.ctrl-l{font:500 10.5px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.seg{display:inline-flex;flex-wrap:wrap;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.45);justify-self:start}
+.seg button{border:0;background:none;padding:7px 12px;border-radius:999px;font:500 10.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);cursor:pointer}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.btn-row{display:flex;flex-wrap:wrap;gap:8px}
+.sw-train{background:var(--c1)} .sw-test{border:2px solid var(--c2);background:var(--paper-hi)}
+.sw-line{display:inline-block;width:18px;height:2px;background:var(--ink)}
+.sw-box{display:inline-block;width:14px;height:10px;border-radius:2px;box-sizing:border-box}
+.sw-mod{background:rgba(199,128,44,.22);box-shadow:inset 0 -2px var(--c2)}
+.sw-bad{border:1.5px solid var(--warn)}
+.sw-dup{background:var(--c0)}
+.mini{margin:0}
+.mini svg{display:block;width:100%;height:auto}
+.mini .lab-legend{margin-top:6px}
+
+/* data quality */
+.dq-scroll{overflow-x:auto}
+.dq{width:100%;border-collapse:collapse;font:400 13.5px/1.35 var(--sans);color:var(--ink);min-width:460px}
+.dq th{font:500 9.5px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 8px 8px;border-bottom:1px solid var(--ink)}
+.dq td{padding:7px 8px;border-bottom:1px solid var(--line);white-space:pre;transition:background .25s}
+.dq td.mod{background:rgba(199,128,44,.16);box-shadow:inset 0 -2px var(--c2)}
+.dq td.bad{color:var(--warn);box-shadow:inset 0 0 0 1px var(--warn)}
+.dq td.miss{color:var(--muted);font-style:italic}
+.dq td small{font:500 9px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--c2);margin-left:4px}
+.dq tr.is-dup td{background:var(--c0);color:var(--muted);text-decoration:line-through;text-decoration-color:var(--ink-2)}
+.toggles{display:grid;gap:12px}
+.tg{display:flex;align-items:center;gap:12px;cursor:pointer;font:400 15px/1.3 var(--sans);color:var(--ink)}
+.tg input{appearance:none;-webkit-appearance:none;flex:none;width:36px;height:20px;border-radius:999px;background:var(--c0);position:relative;cursor:pointer;margin:0;transition:background .2s}
+.tg input::before{content:"";position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .2s}
+.tg input:checked{background:var(--c1)}
+.tg input:checked::before{transform:translateX(16px)}
+.bars{display:grid;gap:10px}
+.bar-row{display:grid;grid-template-columns:96px minmax(0,1fr) 48px;align-items:center;gap:12px}
+.bar-row span:first-child{font:500 10.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.bar-tr{height:8px;border-radius:4px;background:var(--c0);overflow:hidden}
+.bar-tr i{display:block;height:100%;border-radius:4px;background:var(--c1);transition:width .4s cubic-bezier(.2,.7,.2,1)}
+.bar-row b{font:400 14px/1 var(--sans);text-align:right;font-variant-numeric:tabular-nums}
+.code{margin:0;padding:12px 14px;background:var(--ink);color:var(--cream);font:400 11.5px/1.65 var(--mono);border-radius:2px;overflow-x:auto;white-space:pre}
+.code .ln{display:block;opacity:.32;transition:opacity .25s}
+.code .ln.on{opacity:1}
+.code .ln.on::before{content:"▸ ";color:var(--iode)}
+.code .ln:not(.on)::before{content:"  "}
+.code .cm-c{color:var(--iode)}
+
+/* leakage */
+.lk{display:grid;gap:7px}
+.lk-row{display:grid;grid-template-columns:70px minmax(0,1fr) 62px;align-items:center;gap:10px;min-height:20px;padding:2px 0}
+.lk-name{font:500 10px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lk-sq{display:flex;flex-wrap:wrap;gap:3px}
+.lk-sq i{width:14px;height:14px;border-radius:3px;transition:background .3s}
+.lk-sq i.tr{background:var(--c1)} .lk-sq i.te{background:var(--c2)}
+.lk-flag{font:500 9.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--warn);white-space:nowrap}
+.lk-row.leak .lk-name{color:var(--ink)}
+
+/* dashboard */
+.dash{display:grid;gap:16px;margin-top:24px}
+.dash-filters{display:flex;flex-wrap:wrap;align-items:center;gap:12px 26px;padding:14px 0;border-block:1px solid var(--line)}
+.ctrl-in{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.kpi-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.kpi{background:var(--paper-hi);padding:16px 16px 14px;display:grid;gap:6px;align-content:start}
+.kpi b{font:300 clamp(24px,2.3vw,34px)/1 var(--sans);color:var(--ink);letter-spacing:-.01em}
+.kpi span{font:500 10px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.kpi small{font:400 12px/1.3 var(--sans);color:var(--ink-2)}
+.dash-charts{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,.95fr);gap:16px}
+.dash-card{margin:0;background:var(--paper-hi);padding:14px 14px 12px;box-shadow:0 1px 0 rgba(22,25,26,.05),0 14px 28px -18px rgba(22,25,26,.35);display:grid;gap:10px;align-content:start;min-width:0}
+.dash-card svg{display:block;width:100%;height:auto}
+.hbars{display:grid;gap:6px}
+.hb{display:grid;grid-template-columns:50px minmax(0,1fr) 60px;align-items:center;gap:10px;background:none;border:0;padding:5px 0;cursor:pointer;text-align:left;color:var(--ink)}
+.hb span:first-child{font:400 13px/1 var(--sans)}
+.hb-tr{height:10px;position:relative}
+.hb-tr i{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0;background:var(--c1);transition:width .4s cubic-bezier(.2,.7,.2,1)}
+.hb b{font:400 12.5px/1 var(--sans);text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+.hb.off{color:var(--muted)} .hb.off .hb-tr i{background:var(--c0)}
+.hb:hover span:first-child{text-decoration:underline;text-underline-offset:3px}
+.code.small{font-size:10.5px;padding:10px 12px;white-space:pre-wrap;word-break:break-word}
+.kpi b .arr{font-size:.55em;vertical-align:.18em;margin-right:.15em}
+
+/* skills matrix */
+.mx-filters{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 16px}
+.mx-scroll{overflow-x:auto;border-top:1px solid var(--ink)}
+.mx{width:100%;min-width:700px;border-collapse:collapse;font:400 14px/1.3 var(--sans)}
+.mx th,.mx td{border-bottom:1px solid var(--line);padding:0;height:40px}
+.mx thead th{height:auto;padding:10px 4px;vertical-align:bottom;border-bottom:1px solid var(--line)}
+.mx-corner{text-align:left;font:500 9.5px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);width:30%}
+.mx-col{background:none;border:0;padding:4px 2px;cursor:pointer;font:500 9.5px/1.25 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);width:100%}
+.mx-col:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.mx tbody th{text-align:left;font-weight:400;padding-right:12px;color:var(--ink);position:sticky;left:0;background:var(--paper);z-index:1}
+.mx td{text-align:center;transition:background .15s}
+.mx-dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--c1);vertical-align:middle}
+.mx-n{width:62px;text-align:right!important;font:500 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-right:4px!important}
+.mx .hl{background:rgba(0,128,154,.08)}
+.mx tbody th.hl{background:#E6E6E0}
+.mx td.hot{background:rgba(199,128,44,.2)}
+
+@media (max-width:900px){
+  .dash-charts{grid-template-columns:minmax(0,1fr)}
+  .kpi-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:720px){
+  .lk-row{grid-template-columns:58px minmax(0,1fr) 54px}
+  .lk-sq i{width:12px;height:12px}
+  .bar-row{grid-template-columns:84px minmax(0,1fr) 44px}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:minmax(0,1fr);padding-block:100px 0;gap:8px}
+  .hero-stage{margin-top:0;min-height:0;height:430px;margin-left:calc(-1 * max(var(--edge),env(safe-area-inset-left,0px)))}
+  .ring{height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 16px}
+  .ring-center{position:static;transform:none;width:auto;grid-column:1/-1;margin-bottom:12px}
+  .card{position:relative;left:auto;top:auto;width:auto;transform:rotate(var(--rot-m,0deg))}
+  .card:hover,.card:focus-visible{transform:rotate(0deg) scale(1.03)}
+  .detail{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:720px){
+  .dossier::before{display:none}
+  .row{grid-template-columns:minmax(0,1fr);gap:18px}
+  .row>:last-child{padding-left:0}
+  .step{grid-template-columns:34px minmax(0,1fr);gap:6px 12px}
+  .step p{grid-column:2}
+  .tl-row,.skills div{grid-template-columns:minmax(0,1fr);gap:6px}
+  .tl-date{padding-top:0}
+  .stage-cap{bottom:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<nav class="pill" aria-label="Navigation principale">
+  <a class="pill-btn" href="#contact" aria-label="Aller au contact">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"/><path d="M4 7l8 6 8-6"/></svg>
+  </a>
+  <a class="mark" href="#top" aria-label="Haut de page"><span class="mark-ab">Ab</span><span class="mark-sec" id="markSec" aria-hidden="true"></span></a>
+  <button class="pill-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+    <svg class="ico-burger" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9.5h14M5 14.5h14"/></svg>
+    <svg class="ico-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg>
+  </button>
+  <span class="pill-prog" id="prog" aria-hidden="true"></span>
+</nav>
+
+<div class="menu" id="menu" hidden>
+  <div class="menu-in wrap">
+    <p class="label">( Sommaire )</p>
+    <ol class="menu-list">
+      <li><a href="#anamnese"><span>00</span>Anamnèse</a></li>
+      <li><a href="#resultats"><span>I</span>Résultats</a></li>
+      <li><a href="#protocole"><span>II</span>Protocole</a></li>
+      <li><a href="#labo"><span>Lab</span>Laboratoire</a></li>
+      <li><a href="#parcours"><span>III</span>Parcours</a></li>
+      <li><a href="#contact"><span>→</span>Contact</a></li>
+    </ol>
+    <p class="label">abdelhakim.boudra.s@gmail.com · 07 69 87 63 25</p>
+  </div>
+</div>
+
+<header class="hero grain" id="top">
+  <div class="hero-grid wrap">
+    <div class="hero-copy">
+      <p class="label">( En recherche de stage — mars 2027 )</p>
+      <h1>Abdelhakim Boudra</h1>
+      <p class="hero-sub">Data scientist en formation, du pipeline de données au modèle prédictif et au tableau de bord.</p>
+      <a class="btn" href="#contact">Me contacter <i aria-hidden="true">→</i></a>
+    </div>
+    <div class="hero-stage" id="stage">
+      <canvas id="graph" role="img" aria-label="Graphe interactif de mes compétences et projets : data engineering, machine learning, BI, bases de données et IA en santé, reliés aux projets Orange, Falcon Marketing, ESENCA, Airbnb Barcelone, Open Food Facts et OntoThyroid. Les nœuds se déplacent à la souris ou au doigt."></canvas>
+      <div class="grab" id="grab" aria-hidden="true">Déplacer</div>
+      <p class="stage-cap label">( Fig. 00 — Compétences et projets<span class="cap-hint"> · cliquez un nœud</span> )</p>
+    </div>
+  </div>
+  <div class="hero-bar wrap">
+    <nav class="acts" aria-label="Sections">
+      <a href="#resultats"><span>I</span>Résultats</a>
+      <a href="#protocole"><span>II</span>Protocole</a>
+      <a href="#parcours"><span>III</span>Parcours</a>
+      <span class="clock">Lille <b data-clock>--:--</b></span>
+    </nav>
+    <a class="btn btn-sm" href="#anamnese">Entrer ↓</a>
+  </div>
+</header>
+
+<main>
+  <section class="dossier" id="anamnese">
+    <div class="wrap row">
+      <p class="label">( Anamnèse )</p>
+      <p class="lede">Je suis <button type="button" class="reveal" data-prev="photo">Abdelhakim<img class="chip chip-photo" src="data:image/jpeg;base64,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" alt=""></button>, étudiant en Master Management de l’IA en Santé à Centrale Lille et à l’ILIS, après un BUT Science des données à l’Université de Lille. Chez Orange, Falcon Marketing et ESENCA, j’ai appris à partir d’un besoin métier pour aller jusqu’au modèle ou au tableau de bord.</p>
+    </div>
+    <div class="wrap row">
+      <p class="label">( Indications )</p>
+      <div>
+        <p class="lede">Je conçois des <button type="button" class="reveal" data-prev="orange">pipelines<span class="chip" data-chip="orange"></span></button> qui fiabilisent les données, des <button type="button" class="reveal" data-prev="bcn-roc">modèles prédictifs<span class="chip" data-chip="bcn-roc"></span></button> validés avec rigueur, des <button type="button" class="reveal" data-prev="nosql">bases de données<span class="chip" data-chip="nosql"></span></button> pensées pour l’analyse, et des <button type="button" class="reveal" data-prev="esenca">tableaux de bord<span class="chip" data-chip="esenca"></span></button> qui aident les équipes à décider.</p>
+        <p class="label hint"><span class="h-hover">Survolez les mots soulignés pour voir le travail</span><span class="h-touch">Touchez les mots soulignés pour ouvrir les projets</span></p>
+      </div>
+    </div>
+    <div class="wrap row">
+      <p class="label">( En chiffres )</p>
+      <ul class="stats">
+        <li><button type="button" class="stat" data-go="parcours"><b>3</b><span>expériences en data analyse</span></button></li>
+        <li><button type="button" class="stat" data-open="bcn-roc"><b>15&nbsp;293</b><span>annonces Airbnb analysées</span></button></li>
+        <li><button type="button" class="stat" data-open="bcn-roc"><b>0,92</b><span>d’AUC sur la détection des licences</span></button></li>
+        <li><button type="button" class="stat" data-open="esenca"><b>3</b><span>tableaux de bord Power BI déployés</span></button></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="dossier results" id="resultats">
+    <div class="ring-wrap wrap">
+      <div class="filters" role="group" aria-label="Filtrer les figures par domaine">
+        <span class="label">Filtrer</span>
+        <button type="button" class="chipf" data-filter="all" aria-pressed="true">Tout</button>
+        <button type="button" class="chipf" data-filter="eng" aria-pressed="false">Data engineering</button>
+        <button type="button" class="chipf" data-filter="ml" aria-pressed="false">Machine learning</button>
+        <button type="button" class="chipf" data-filter="bi" aria-pressed="false">BI &amp; dataviz</button>
+        <button type="button" class="chipf" data-filter="db" aria-pressed="false">Bases de données</button>
+        <button type="button" class="chipf" data-filter="sante" aria-pressed="false">IA en santé</button>
+      </div>
+      <div class="ring" id="ring">
+        <div class="ring-center">
+          <p class="label">( I — Résultats )</p>
+          <h2>Huit figures tirées de mes projets et de mes stages.</h2>
+          <p class="label">Choisissez une figure ↓</p>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <article class="detail" id="detail" aria-live="polite"></article>
+      <p class="label note">Figures schématiques. Les chiffres sont ceux des projets.</p>
+    </div>
+  </section>
+
+  <div class="band grain" aria-hidden="true"><div class="band-track"><span>Python</span><span>Pandas</span><span>NumPy</span><span>scikit-learn</span><span>Keras</span><span>PyTorch</span><span>SQL</span><span>R</span><span>SAS</span><span>Power BI</span><span>DAX</span><span>MongoDB</span><span>Neo4j</span><span>Oracle</span><span>SQL Server</span><span>Jupyter</span><span>Weka</span><span>Protégé</span><span>Python</span><span>Pandas</span><span>NumPy</span><span>scikit-learn</span><span>Keras</span><span>PyTorch</span><span>SQL</span><span>R</span><span>SAS</span><span>Power BI</span><span>DAX</span><span>MongoDB</span><span>Neo4j</span><span>Oracle</span><span>SQL Server</span><span>Jupyter</span><span>Weka</span><span>Protégé</span></div></div>
+
+  <section class="dossier" id="protocole">
+    <div class="wrap row">
+      <p class="label">( II — Protocole )</p>
+      <div>
+        <p class="lede">Pour une équipe data comme pour un service de santé, la méthode reste la même.</p>
+        <ol class="steps">
+          <li class="step"><span class="step-n">01</span><h3>Comprendre</h3><p>Je pars du besoin métier ou clinique et je le traduis en indicateurs et en questions auxquelles les données peuvent répondre.</p><div class="step-links"><button type="button" data-open="esenca">ESENCA</button><button type="button" data-open="orange">Orange</button></div></li>
+          <li class="step"><span class="step-n">02</span><h3>Fiabiliser</h3><p>Collecte par API, nettoyage, structuration et contrôle qualité avec Pandas, avant toute modélisation.</p><div class="step-links"><button type="button" data-open="orange">Orange</button><button type="button" data-open="falcon">Falcon</button><button type="button" data-open="off">Open Food Facts</button><button type="button" class="try" data-lab="qualite">Essayer ↓</button></div></li>
+          <li class="step"><span class="step-n">03</span><h3>Modéliser</h3><p>Régression, classification, clustering, gradient boosting ou deep learning, selon ce que le problème demande.</p><div class="step-links"><button type="button" data-open="bcn-roc">Airbnb BCN</button><button type="button" data-open="falcon">Falcon</button><button type="button" data-open="onto-kappa">OntoThyroid</button><button type="button" class="try" data-lab="surapp">Essayer ↓</button></div></li>
+          <li class="step"><span class="step-n">04</span><h3>Évaluer</h3><p>Validation croisée groupée, audit des fuites de données, métriques adaptées comme le Kappa ou l’AUC, analyse d’équité.</p><div class="step-links"><button type="button" data-open="bcn-roc">Airbnb BCN</button><button type="button" data-open="onto-kappa">OntoThyroid</button><button type="button" class="try" data-lab="kappa">Exactitude et Kappa ↓</button><button type="button" class="try" data-lab="fuite">Fuite de données ↓</button></div></li>
+          <li class="step"><span class="step-n">05</span><h3>Livrer</h3><p>Une solution documentée, testée et mise en production, puis restituée aux équipes métier via Power BI.</p><div class="step-links"><button type="button" data-open="orange">Orange</button><button type="button" data-open="esenca">ESENCA</button><button type="button" data-open="falcon">Falcon</button><button type="button" class="try" data-lab="tableau">Essayer ↓</button></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="dossier" id="labo">
+    <div class="wrap row">
+      <p class="label">( Laboratoire )</p>
+      <div>
+        <p class="lede">Cinq expériences interactives, une pour chaque étape de ma méthode. Les données sont fictives, les gestes sont ceux que j’applique sur les vrais projets.</p>
+        <p class="label hint">Démos interactives · données simulées</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="lab-tabs" role="tablist" aria-label="Expériences du laboratoire">
+        <button type="button" class="lab-tab" role="tab" id="tab-qualite" aria-controls="pan-qualite" aria-selected="true" data-tab="qualite"><span>02 · FIABILISER</span><b>Qualité des données</b></button>
+        <button type="button" class="lab-tab" role="tab" id="tab-surapp" aria-controls="pan-surapp" aria-selected="false" data-tab="surapp" tabindex="-1"><span>03 · MODÉLISER</span><b>Surapprentissage</b></button>
+        <button type="button" class="lab-tab" role="tab" id="tab-kappa" aria-controls="pan-kappa" aria-selected="false" data-tab="kappa" tabindex="-1"><span>04 · ÉVALUER</span><b>Exactitude et Kappa</b></button>
+        <button type="button" class="lab-tab" role="tab" id="tab-fuite" aria-controls="pan-fuite" aria-selected="false" data-tab="fuite" tabindex="-1"><span>04 · ÉVALUER</span><b>Fuite de données</b></button>
+        <button type="button" class="lab-tab" role="tab" id="tab-tableau" aria-controls="pan-tableau" aria-selected="false" data-tab="tableau" tabindex="-1"><span>05 · LIVRER</span><b>Tableau de bord</b></button>
+      </div>
+
+      <!-- 02 data quality -->
+      <div class="lab-panel" role="tabpanel" id="pan-qualite" aria-labelledby="tab-qualite">
+        <div class="lab-head">
+          <h3>Nettoyer avant de modéliser</h3>
+          <p>Un fichier de prospection B2B fictif, avec les défauts habituels. Activez les étapes et regardez la qualité évoluer. L’ordre compte&nbsp;: sans normalisation, les doublons passent inaperçus.</p>
+          <div class="lab-links"><button type="button" class="lab-proj" data-open="orange">Projet lié&nbsp;: Orange →</button></div>
+        </div>
+        <div class="lab">
+          <figure class="lab-viz">
+            <div class="dq-scroll"><table class="dq" id="dqTable"></table></div>
+            <figcaption class="lab-legend"><span><i class="sw-box sw-mod"></i>Valeur corrigée</span><span><i class="sw-box sw-bad"></i>⚠ Valeur invalide</span><span><i class="sw-box sw-dup"></i>Doublon supprimé</span></figcaption>
+          </figure>
+          <div class="lab-ctrl">
+            <div class="toggles">
+              <label class="tg"><input type="checkbox" id="dqNorm"><span>Normaliser le texte</span></label>
+              <label class="tg"><input type="checkbox" id="dqDup"><span>Supprimer les doublons</span></label>
+              <label class="tg"><input type="checkbox" id="dqMail"><span>Valider les e-mails</span></label>
+              <label class="tg"><input type="checkbox" id="dqNum"><span>Typer et imputer l’effectif</span></label>
+            </div>
+            <div class="bars" id="dqBars"></div>
+            <p class="lab-say" id="dqSay" aria-live="polite"></p>
+            <pre class="code" id="dqCode" aria-label="Code Pandas équivalent"></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 overfitting -->
+      <div class="lab-panel" role="tabpanel" id="pan-surapp" aria-labelledby="tab-surapp" hidden>
+        <div class="lab-head">
+          <h3>Plus complexe n’est pas meilleur</h3>
+          <p>Un polynôme ajusté sur 16 points d’apprentissage, puis évalué sur 8 points qu’il n’a jamais vus. Quand la complexité augmente, le score d’apprentissage monte toujours. Celui du test finit par s’effondrer.</p>
+          <div class="lab-links"><button type="button" class="lab-proj" data-open="falcon">Projet lié&nbsp;: Falcon Marketing →</button><button type="button" class="lab-proj" data-open="bcn-roc">Airbnb Barcelone →</button></div>
+        </div>
+        <div class="lab">
+          <figure class="lab-viz">
+            <svg id="ofSvg" viewBox="0 0 400 260" role="img" aria-label="Nuage de points d’apprentissage et de test avec la courbe du modèle ajusté. Les scores R² sont affichés à côté."></svg>
+            <figcaption class="lab-legend"><span><i class="sw sw-train"></i>Apprentissage</span><span><i class="sw sw-test"></i>Test</span><span><i class="sw-line"></i>Modèle ajusté</span></figcaption>
+          </figure>
+          <div class="lab-ctrl">
+            <div class="ctrl"><label for="ofDeg">Complexité (degré du polynôme) <output id="ofDegOut" for="ofDeg">3</output></label><input id="ofDeg" type="range" min="1" max="12" step="1" value="3"></div>
+            <div class="ctrl"><label for="ofNoise">Bruit dans les données <output id="ofNoiseOut" for="ofNoise">0,35</output></label><input id="ofNoise" type="range" min="0" max="1" step="0.05" value="0.35"></div>
+            <div class="btn-row"><button type="button" class="chipf" id="ofNew">Nouvel échantillon</button><button type="button" class="chipf" id="ofTest" aria-pressed="true">Afficher le test</button></div>
+            <div class="metrics">
+              <div class="metric"><b id="ofTr">–</b><span>R² apprentissage</span></div>
+              <div class="metric key"><b id="ofTe">–</b><span>R² test</span></div>
+            </div>
+            <figure class="mini">
+              <svg id="ofCurve" viewBox="0 0 320 158" role="img" aria-label="R² d’apprentissage et de test selon le degré du polynôme, de 1 à 12"></svg>
+              <figcaption class="lab-legend"><span><i class="lg lg-f"></i>R² apprentissage</span><span><i class="lg lg-e"></i>R² test</span><span>Cliquez un degré</span></figcaption>
+            </figure>
+            <p class="lab-say" id="ofSay" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 kappa -->
+      <div class="lab-panel" role="tabpanel" id="pan-kappa" aria-labelledby="tab-kappa" hidden>
+        <div class="lab-head">
+          <h3>L’exactitude ne suffit pas</h3>
+          <p>Avec des classes déséquilibrées, un modèle qui prédit toujours «&nbsp;négatif&nbsp;» peut afficher 90&nbsp;% d’exactitude sans trouver un seul cas. C’est pour ça que je regarde aussi le Kappa, la précision et le rappel.</p>
+          <div class="lab-links"><button type="button" class="lab-proj" data-open="onto-kappa">Projet lié&nbsp;: OntoThyroid →</button><button type="button" class="lab-proj" data-open="bcn-top">Airbnb Barcelone →</button></div>
+        </div>
+        <div class="lab">
+          <figure class="lab-viz">
+            <svg id="labSvg" viewBox="0 0 400 250" role="img" aria-label="Grille de 1 000 individus simulés, colorés selon le résultat du modèle. Les valeurs sont reprises dans la matrice de confusion."></svg>
+            <figcaption class="lab-legend" id="labLegend"></figcaption>
+          </figure>
+          <div class="lab-ctrl">
+            <div class="ctrl"><label for="prev">Part de cas positifs <output id="prevOut" for="prev">10&nbsp;%</output></label><input id="prev" type="range" min="2" max="50" step="1" value="10"></div>
+            <div class="ctrl"><label for="thr">Seuil de décision <output id="thrOut" for="thr">0,50</output></label><input id="thr" type="range" min="0.05" max="0.95" step="0.01" value="0.5"></div>
+            <button type="button" class="chipf naive" id="naive" aria-pressed="false">Modèle naïf : tout prédire négatif</button>
+            <div class="metrics">
+              <div class="metric"><b id="mAcc">–</b><span>Exactitude</span></div>
+              <div class="metric key"><b id="mKap">–</b><span>Kappa de Cohen</span></div>
+              <div class="metric"><b id="mPre">–</b><span>Précision</span></div>
+              <div class="metric"><b id="mRec">–</b><span>Rappel</span></div>
+            </div>
+            <p class="lab-say" id="labSay" aria-live="polite"></p>
+            <table class="cm">
+              <caption class="label">Matrice de confusion</caption>
+              <thead><tr><th scope="col">Réel / prédit</th><th scope="col">Prédit positif</th><th scope="col">Prédit négatif</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Réel positif</th><td id="cTP">–</td><td id="cFN">–</td></tr>
+                <tr><th scope="row">Réel négatif</th><td id="cFP">–</td><td id="cTN">–</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 leakage -->
+      <div class="lab-panel" role="tabpanel" id="pan-fuite" aria-labelledby="tab-fuite" hidden>
+        <div class="lab-head">
+          <h3>Une fuite ne se voit pas dans le score</h3>
+          <p>60 annonces publiées par 12 hôtes, réparties en 5 plis de validation croisée. Avec un découpage aléatoire, un même hôte se retrouve en apprentissage et en test. Le modèle peut alors reconnaître l’hôte au lieu d’apprendre la tâche, et le score devient trop optimiste.</p>
+          <div class="lab-links"><button type="button" class="lab-proj" data-open="bcn-roc">Projet lié&nbsp;: Inside Airbnb Barcelone →</button></div>
+        </div>
+        <div class="lab">
+          <figure class="lab-viz">
+            <div class="lk" id="lkGrid" role="img" aria-label="Annonces de chaque hôte, colorées selon leur pli : apprentissage ou test"></div>
+            <figcaption class="lab-legend"><span><i class="sw sw-train" style="border-radius:3px"></i>Apprentissage</span><span><i class="sw" style="background:var(--c2);border-radius:3px"></i>Test</span><span style="color:var(--warn)">⚠ Hôte présent des deux côtés</span></figcaption>
+          </figure>
+          <div class="lab-ctrl">
+            <div class="ctrl"><span class="ctrl-l">Découpage</span><div class="seg" id="lkSplit" role="group" aria-label="Méthode de découpage"><button type="button" data-split="random" aria-pressed="true">Aléatoire</button><button type="button" data-split="group" aria-pressed="false">Groupé par hôte</button></div></div>
+            <div class="ctrl"><span class="ctrl-l">Pli de test</span><div class="seg" id="lkFold" role="group" aria-label="Pli utilisé comme test"><button type="button" data-fold="0" aria-pressed="true">1</button><button type="button" data-fold="1" aria-pressed="false">2</button><button type="button" data-fold="2" aria-pressed="false">3</button><button type="button" data-fold="3" aria-pressed="false">4</button><button type="button" data-fold="4" aria-pressed="false">5</button></div></div>
+            <div class="btn-row"><button type="button" class="chipf" id="lkShuffle">Re-mélanger</button></div>
+            <div class="metrics">
+              <div class="metric key"><b id="lkHosts">–</b><span>Hôtes des deux côtés</span></div>
+              <div class="metric"><b id="lkShare">–</b><span>Annonces de test à l’hôte déjà vu</span></div>
+            </div>
+            <p class="lab-say" id="lkSay" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 dashboard -->
+      <div class="lab-panel" role="tabpanel" id="pan-tableau" aria-labelledby="tab-tableau" hidden>
+        <div class="lab-head">
+          <h3>Un tableau de bord qui répond à une question</h3>
+          <p>Un modèle en étoile fictif&nbsp;: une table de faits (les commandes) et trois dimensions. Chaque filtre agit sur une dimension et toutes les mesures se recalculent. Cliquez un mois ou une région pour filtrer depuis les graphiques.</p>
+          <div class="lab-links"><button type="button" class="lab-proj" data-open="esenca">Projet lié&nbsp;: ESENCA →</button><button type="button" class="lab-proj" data-open="falcon">Falcon Marketing →</button></div>
+        </div>
+        <div class="dash" id="dash">
+          <div class="dash-filters">
+            <div class="ctrl-in"><span class="ctrl-l">Période</span><div class="seg" id="dbQ" role="group" aria-label="Période"><button type="button" data-q="0" aria-pressed="true">Année</button><button type="button" data-q="1" aria-pressed="false">T1</button><button type="button" data-q="2" aria-pressed="false">T2</button><button type="button" data-q="3" aria-pressed="false">T3</button><button type="button" data-q="4" aria-pressed="false">T4</button></div></div>
+            <div class="ctrl-in"><span class="ctrl-l">Régions</span><div class="seg" id="dbR" role="group" aria-label="Régions"><button type="button" data-r="0" aria-pressed="true">Nord</button><button type="button" data-r="1" aria-pressed="true">Est</button><button type="button" data-r="2" aria-pressed="true">Ouest</button><button type="button" data-r="3" aria-pressed="true">Sud</button></div></div>
+            <div class="ctrl-in"><span class="ctrl-l">Catégorie</span><div class="seg" id="dbC" role="group" aria-label="Catégorie"><button type="button" data-c="-1" aria-pressed="true">Toutes</button><button type="button" data-c="0" aria-pressed="false">Matériel</button><button type="button" data-c="1" aria-pressed="false">Logiciel</button><button type="button" data-c="2" aria-pressed="false">Services</button></div></div>
+            <button type="button" class="chipf" id="dbReset">Réinitialiser</button>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi"><span>Chiffre d’affaires</span><b id="kCA">–</b></div>
+            <div class="kpi"><span>Commandes</span><b id="kN">–</b></div>
+            <div class="kpi"><span>Panier moyen</span><b id="kAvg">–</b></div>
+            <div class="kpi"><span>Évolution</span><b id="kEvo">–</b><small id="kEvoSub"></small></div>
+          </div>
+          <div class="dash-charts">
+            <figure class="dash-card"><figcaption class="label">CA par mois</figcaption><svg id="dbMonths" viewBox="0 0 420 196" role="img" aria-label="Chiffre d’affaires par mois"></svg></figure>
+            <figure class="dash-card"><figcaption class="label">CA par région · cliquer pour filtrer</figcaption><div class="hbars" id="dbRegions"></div></figure>
+            <figure class="dash-card"><figcaption class="label">Modèle en étoile · contexte de filtre</figcaption><svg id="dbStar" viewBox="0 0 220 150" role="img" aria-label="Modèle en étoile : la table de faits et ses trois dimensions, les dimensions filtrées sont mises en évidence"></svg><pre class="code small" id="dbDax"></pre></figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dossier" id="parcours">
+    <div class="wrap row">
+      <p class="label">( III — Parcours )</p>
+      <div>
+        <h3 class="label cv-h">Chronologie</h3>
+        <div class="chrono">
+          <div class="chrono-legend"><span><i class="lg lg-f"></i>Formation</span><span><i class="lg lg-e"></i>Expérience</span><span><i class="lg lg-o"></i>Objectif</span></div>
+          <div class="chrono-grid" id="chronoGrid"></div>
+        </div>
+        <h3 class="label cv-h">Expérience</h3>
+        <ol class="tl">
+          <li class="tl-row"><span class="tl-date">09/2025 – 12/2025</span><div><h4>Data Analyst <span>— Orange (B2B)</span></h4><p class="label">Mission</p><p class="txt">Pipeline Python automatisé (API REST) pour collecter des données de prospection B2B, nettoyage et contrôle qualité avec Pandas, solution documentée, testée et mise en production.</p><button type="button" class="tl-link" data-open="orange">Voir la fig. 03 →</button></div></li>
+          <li class="tl-row"><span class="tl-date">03/2025 – 07/2025</span><div><h4>Data Analyst <span>— Falcon Marketing</span></h4><p class="label">Stage</p><p class="txt">Analyse de données CRM, indicateurs de performance et tableaux de bord décisionnels, modèle prédictif par régression, restitution aux équipes métier via Power BI.</p><button type="button" class="tl-link" data-open="falcon">Voir la fig. 04 →</button></div></li>
+          <li class="tl-row"><span class="tl-date">04/2024 – 06/2024</span><div><h4>Analyste BI <span>— ESENCA</span></h4><p class="label">Stage</p><p class="txt">Trois tableaux de bord Power BI (modélisation en étoile, mesures DAX) sur plusieurs millions de lignes extraites d’une base HFSQL.</p><button type="button" class="tl-link" data-open="esenca">Voir la fig. 05 →</button></div></li>
+        </ol>
+        <h3 class="label cv-h">Formation</h3>
+        <ol class="tl">
+          <li class="tl-row"><span class="tl-date">2026 – 2028</span><div><h4>Master Management de l’IA en Santé (MIAS) <span>— Centrale Lille &amp; ILIS</span></h4><p class="label">M1 en cours</p><p class="txt">Machine learning et data science pour la santé · IA symbolique (ontologies médicales, NLP) · management de projets IA · éthique et réglementation de l’IA en santé · biologie computationnelle · SI hospitaliers.</p></div></li>
+          <li class="tl-row"><span class="tl-date">2022 – 2025</span><div><h4>BUT Science des données <span>— Université de Lille</span></h4></div></li>
+        </ol>
+        <h3 class="label cv-h">Compétences × projets</h3>
+        <div class="mx-filters" id="mxF" role="group" aria-label="Filtrer les compétences par domaine">
+          <button type="button" class="chipf" data-mx="all" aria-pressed="true">Tout</button>
+          <button type="button" class="chipf" data-mx="eng" aria-pressed="false">Data engineering</button>
+          <button type="button" class="chipf" data-mx="ml" aria-pressed="false">Machine learning</button>
+          <button type="button" class="chipf" data-mx="bi" aria-pressed="false">BI &amp; dataviz</button>
+          <button type="button" class="chipf" data-mx="db" aria-pressed="false">Bases de données</button>
+          <button type="button" class="chipf" data-mx="sante" aria-pressed="false">IA en santé</button>
+        </div>
+        <div class="mx-scroll"><table class="mx" id="mx"><caption class="label" style="text-align:left;padding:10px 0;caption-side:bottom">Survolez une case pour voir ce qui a été fait · cliquez un projet pour ouvrir son dossier</caption></table></div>
+        <h3 class="label cv-h">Toutes les compétences</h3>
+        <dl class="skills">
+          <div><dt>Langages &amp; data</dt><dd>Python (Pandas, NumPy, scikit-learn, Keras, PyTorch, owlready2) · SQL · R · SAS · Jupyter</dd></div>
+          <div><dt>Machine learning</dt><dd>Régression, classification, clustering · Random Forest, Gradient Boosting · deep learning (CNN) · NLP</dd></div>
+          <div><dt>Santé numérique</dt><dd>Données cliniques · aide à la décision clinique · systèmes d’information hospitaliers · RGPD, AI Act</dd></div>
+          <div><dt>BI &amp; bases</dt><dd>Power BI · DAX · modélisation en étoile · SQL Server · Oracle · MongoDB · Neo4j · HFSQL</dd></div>
+          <div><dt>Ontologies &amp; IA</dt><dd>Protégé · OWL · SWRL · SPARQL · Weka · ingénierie des connaissances · IA explicable (XAI)</dd></div>
+          <div><dt>Gestion de projet</dt><dd>Pilotage de projets IA · gestion de l’innovation · communication et valorisation de solutions IA</dd></div>
+          <div><dt>Langues</dt><dd>Français (langue maternelle) · anglais B2, intermédiaire avancé (anglais scientifique appliqué à la santé)</dd></div>
+          <div><dt>Qualités</dt><dd>Esprit analytique · rigueur · autonomie · travail en équipe · communication des résultats</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="dossier poso" id="posologie">
+    <div class="wrap row">
+      <p class="label">( Posologie )</p>
+      <div>
+        <p class="poso-text">Stage de 6&nbsp;mois, à partir de mars 2027. Renouvelable en alternance en M2&nbsp;: 3&nbsp;semaines en entreprise, 1&nbsp;semaine à l’école.</p>
+        <p class="label">Mobilité&nbsp;: France · Anglais B2</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot grain" id="contact">
+  <div class="fringe" id="fringe" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="row">
+      <p class="label">( Prise de contact )</p>
+      <div>
+        <h2 class="foot-h">Parlons de votre prochain projet data.</h2>
+        <div class="mail-row">
+          <span class="mail" id="mail">abdelhakim.boudra.s@gmail.com</span>
+          <button type="button" class="copy" id="copyMail">Copier l’adresse</button>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bar">
+      <ul class="links">
+        <li><a href="https://www.linkedin.com/in/abdelhakim-boudra-0b553b282" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+        <li><span>07 69 87 63 25</span></li>
+      </ul>
+      <span class="label">Lille, <b data-clock>--:--</b></span>
+    </div>
+    <div class="foot-legal">
+      <span>© 2026 Abdelhakim Boudra</span>
+      <a href="#top">Haut de page ↑</a>
+    </div>
+  </div>
+</footer>
+
+<div class="preview" id="preview" aria-hidden="true">
+  <div class="pol"><span class="pol-img" id="prevImg"></span><span class="pol-cap"><span id="prevN"></span><span id="prevL"></span></span></div>
+</div>
+
+<script>
+(function(){
+"use strict";
+const rm = matchMedia('(prefers-reduced-motion: reduce)');
+const NB = ' ';
+const fr = s => s.replace(/ ([:;%?!])/g, NB+'$1').replace(/(\d) (\d{3})/g, '$1'+NB+'$2');
+
+/* ---------- figure drawings (SVG, 240×170) ---------- */
+const svg = s => `<svg viewBox="0 0 240 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="240" height="170" style="fill:var(--f-bg)"/>${s}</svg>`;
+const T = (x, y, s, cls, anchor, extra) => `<text x="${x}" y="${y}" class="ft ${cls||''}" text-anchor="${anchor||'start'}" ${extra||''}>${s}</text>`;
+const f1 = n => n.toFixed(1);
+function box(x, y, w, h, label, fill, txt){
+  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="2" style="fill:${fill||'var(--f-soft)'};stroke:var(--f-ink)" stroke-width="1"/>` +
+    T(x + w/2, y + h/2 + 3, label, 'ft-b', 'middle', txt ? `style="fill:${txt}"` : '');
+}
+function arrow(x1, y1, x2, y2){
+  const a = Math.atan2(y2 - y1, x2 - x1), h = 5;
+  const p1 = [x2 - h*Math.cos(a - .45), y2 - h*Math.sin(a - .45)], p2 = [x2 - h*Math.cos(a + .45), y2 - h*Math.sin(a + .45)];
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" style="stroke:var(--f-ink)" stroke-width="1"/>` +
+    `<path d="M${x2} ${y2}L${f1(p1[0])} ${f1(p1[1])}L${f1(p2[0])} ${f1(p2[1])}Z" style="fill:var(--f-ink)"/>`;
+}
+
+function figOnto(){
+  const cx = 120, cy = 86, R = 48, n = 11;
+  const names = {0:'Étiologies', 2:'Symptômes', 4:'Examens', 7:'Traitements', 9:'Patients'};
+  let s = '';
+  for (let i = 0; i < n; i++){
+    const a = (-90 + i*360/n) * Math.PI/180, c = Math.cos(a), si = Math.sin(a);
+    s += `<line x1="${f1(cx + c*20)}" y1="${f1(cy + si*20)}" x2="${f1(cx + c*R)}" y2="${f1(cy + si*R)}" style="stroke:var(--f-mut)" stroke-width="1" stroke-dasharray="1.5 2.5" stroke-linecap="round"/>`;
+    s += `<circle cx="${f1(cx + c*R)}" cy="${f1(cy + si*R)}" r="3" style="fill:var(--f-ink)"/>`;
+    const k = 2 + (i*7) % 3;
+    for (let j = 0; j < k; j++){
+      const aa = a + (j - (k - 1)/2) * .17, rr = R + 9 + (j % 2) * 4;
+      s += `<circle cx="${f1(cx + Math.cos(aa)*rr)}" cy="${f1(cy + Math.sin(aa)*rr)}" r="1.4" style="fill:var(--f-mut)"/>`;
+    }
+    if (names[i]){
+      const anc = Math.abs(c) < .3 ? 'middle' : (c > 0 ? 'start' : 'end');
+      s += T(f1(cx + c*68), f1(cy + si*68 + 3), names[i], '', anc);
+    }
+  }
+  s += `<circle cx="${cx}" cy="${cy}" r="19" style="fill:var(--f-acc)"/>`;
+  s += T(cx, cy + 2.5, 'Thyroïde', 'ft-b', 'middle', 'style="font-size:7px;fill:var(--f-bg)"');
+  s += T(10, 162, '300+ classes · 11 branches', 'ft-m');
+  return svg(s);
+}
+function figKappa(){
+  const x0 = 92, W = 110;
+  const rows = [['Naive Bayes', .60, 'var(--f-mut)'], ['NB + ontologie', .73, 'var(--f-acc)'], ['J48', .98, 'var(--f-ink)']];
+  let s = T(10, 22, 'Kappa · validation croisée 10 plis', 'ft-m');
+  rows.forEach((r, i) => {
+    const y = 40 + i*30;
+    s += T(10, y + 11, r[0]);
+    s += `<rect x="${x0}" y="${y}" width="${f1(W*r[1])}" height="15" style="fill:${r[2]}"/>`;
+    s += T(f1(x0 + W*r[1] + 5), y + 11, r[1].toFixed(2).replace('.', ','), 'ft-b');
+  });
+  s += `<line x1="${x0}" y1="134" x2="${x0 + W}" y2="134" style="stroke:var(--f-mut)" stroke-width="1"/>`;
+  [0, .5, 1].forEach(v => {
+    const x = x0 + W*v;
+    s += `<line x1="${x}" y1="131" x2="${x}" y2="137" style="stroke:var(--f-mut)"/>`;
+    s += T(x, 148, String(v).replace('.', ','), 'ft-m', 'middle');
+  });
+  s += T(10, 164, 'J48 : 99,7 % d’exactitude', 'ft-m');
+  return svg(s);
+}
+function figRoc(){
+  const x0 = 64, y0 = 140, S = 118, pts = [];
+  for (let i = 0; i <= 50; i++){ const x = i/50, y = 1 - Math.pow(1 - x, 11.5); pts.push([x0 + x*S, y0 - y*S]); }
+  const line = pts.map((p, i) => (i ? 'L' : 'M') + f1(p[0]) + ' ' + f1(p[1])).join('');
+  let s = `<path d="${line}L${x0 + S} ${y0}L${x0} ${y0}Z" style="fill:var(--f-acc);opacity:.18"/>`;
+  s += `<line x1="${x0}" y1="${y0}" x2="${x0 + S}" y2="${y0 - S}" style="stroke:var(--f-mut)" stroke-dasharray="2 3"/>`;
+  s += `<path d="${line}" style="fill:none;stroke:var(--f-acc)" stroke-width="2"/>`;
+  s += `<path d="M${x0} ${y0 - S}V${y0}H${x0 + S}" style="fill:none;stroke:var(--f-ink)" stroke-width="1"/>`;
+  s += T(f1(x0 + S*.62), f1(y0 - S*.2), 'AUC 0,92', 'ft-b', 'middle', 'style="font-size:10px"');
+  s += T(x0 + S/2, y0 + 14, 'faux positifs', 'ft-m', 'middle');
+  s += T(x0 - 9, y0 - S/2, 'vrais positifs', 'ft-m', 'middle', `transform="rotate(-90 ${x0 - 9} ${y0 - S/2})"`);
+  s += T(x0 - 3, y0 + 3, '0', 'ft-m', 'end') + T(x0 - 3, y0 - S + 3, '1', 'ft-m', 'end') + T(x0 + S, y0 + 14, '1', 'ft-m', 'middle');
+  s += T(10, 15, 'Licences · HistGradientBoosting', 'ft-m');
+  return svg(s);
+}
+function figTop200(){
+  const hollow = new Set([23, 67, 98, 131, 158, 186]);
+  let s = T(10, 17, 'Top 200 des annonces signalées', 'ft-m');
+  for (let i = 0; i < 200; i++){
+    const c = i % 20, r = Math.floor(i/20), x = 29 + c*9.5, y = 33 + r*9.5;
+    s += hollow.has(i)
+      ? `<circle cx="${f1(x)}" cy="${f1(y)}" r="2.8" style="fill:none;stroke:var(--f-mut)" stroke-width="1"/>`
+      : `<circle cx="${f1(x)}" cy="${f1(y)}" r="3.1" style="fill:var(--f-acc)"/>`;
+  }
+  s += T(10, 141, '194 sans licence sur 200', 'ft-b', 'start', 'style="font-size:9px"');
+  s += T(10, 157, 'soit 97 % de non-conformes', 'ft-m');
+  return svg(s);
+}
+function figPipeline(){
+  let s = T(10, 19, 'Prospection B2B · Python', 'ft-m');
+  s += box(14, 32, 96, 30, 'API REST') + arrow(110, 47, 128, 47) + box(130, 32, 96, 30, 'Collecte');
+  s += arrow(178, 62, 178, 84);
+  s += box(130, 86, 96, 30, 'Pandas · qualité') + arrow(130, 101, 112, 101) + box(14, 86, 96, 30, 'Production', 'var(--f-ink)', 'var(--f-bg)');
+  s += T(10, 150, 'Documenté · testé · mis en production', 'ft-m');
+  return svg(s);
+}
+function figStar(){
+  let s = T(120, 17, 'Modèle en étoile · DAX', 'ft-m', 'middle');
+  const dims = [[16, 30], [174, 30], [16, 118], [174, 118]];
+  dims.forEach(d => { s += `<line x1="${d[0] + 25}" y1="${d[1] + 11}" x2="120" y2="85" style="stroke:var(--f-mut)" stroke-dasharray="2 2.5"/>`; });
+  dims.forEach(d => { s += box(d[0], d[1], 50, 22, 'Dim.'); });
+  s += box(88, 71, 64, 28, 'Faits', 'var(--f-acc)', 'var(--f-bg)');
+  s += T(120, 161, '3 tableaux de bord Power BI', 'ft-m', 'middle');
+  return svg(s);
+}
+function figReg(){
+  const x0 = 30, y0 = 134, W = 186, H = 104;
+  let s = T(10, 16, 'Données CRM historiques · régression', 'ft-m');
+  s += `<path d="M${x0} ${y0 - H}V${y0}H${x0 + W}" style="fill:none;stroke:var(--f-mut)"/>`;
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 26; i++){
+    const u = rnd(), v = .15 + .7*u + (rnd() - .5) * .32;
+    const x = x0 + 8 + u*(W - 16), y = y0 - Math.max(.04, Math.min(.96, v)) * H;
+    s += `<circle cx="${f1(x)}" cy="${f1(y)}" r="2.4" style="fill:var(--f-ink);opacity:.75"/>`;
+  }
+  s += `<line x1="${x0 + 8}" y1="${f1(y0 - .15*H)}" x2="${x0 + W - 8}" y2="${f1(y0 - .85*H)}" style="stroke:var(--f-acc)" stroke-width="2"/>`;
+  s += T(x0 + W/2, y0 + 17, 'schéma illustratif', 'ft-m', 'middle');
+  return svg(s);
+}
+function figOff(){
+  let s = T(10, 17, 'Open Food Facts · système décisionnel', 'ft-m');
+  for (let i = 0; i < 8; i++){
+    const y = 32 + i*10;
+    s += `<rect x="14" y="${y}" width="72" height="6" style="fill:var(--f-soft);stroke:var(--f-mut)" stroke-width=".6"/>`;
+    s += `<rect x="14" y="${y}" width="${16 + (i*13) % 30}" height="6" style="fill:var(--f-ink);opacity:.55"/>`;
+  }
+  s += T(14, 126, 'millions de lignes', 'ft-m');
+  s += arrow(90, 66, 106, 66);
+  s += box(108, 50, 58, 32, 'Nettoyage');
+  s += arrow(166, 66, 182, 66);
+  [[188, 42], [202, 26], [216, 52]].forEach(b => { s += `<rect x="${b[0]}" y="${110 - b[1] - 20}" width="10" height="${b[1] + 20}" style="fill:var(--f-acc)"/>`; });
+  s += `<line x1="184" y1="110" x2="230" y2="110" style="stroke:var(--f-ink)"/>`;
+  s += T(137, 100, 'API', 'ft-m', 'middle') + T(208, 126, 'modèles', 'ft-m', 'middle');
+  s += T(10, 154, 'Collecte · nettoyage · modèles prédictifs', 'ft-m');
+  return svg(s);
+}
+function figNoSql(){
+  let s = T(10, 17, 'Bases NoSQL · migration et modélisation', 'ft-m');
+  [[18, 34], [26, 42], [34, 50]].forEach(d => {
+    s += `<rect x="${d[0]}" y="${d[1]}" width="58" height="56" rx="2" style="fill:var(--f-bg);stroke:var(--f-ink)"/>`;
+  });
+  s += T(63, 72, '{ }', 'ft-b', 'middle', 'style="font-size:13px"') + T(63, 86, 'documents', 'ft-m', 'middle');
+  s += arrow(100, 76, 124, 76);
+  const g = [[146, 46], [190, 38], [214, 76], [176, 98], [140, 96]];
+  [[0, 1], [1, 2], [2, 3], [3, 4], [4, 0], [0, 3], [1, 3]].forEach(e => { s += `<line x1="${g[e[0]][0]}" y1="${g[e[0]][1]}" x2="${g[e[1]][0]}" y2="${g[e[1]][1]}" style="stroke:var(--f-ink)" stroke-width="1"/>`; });
+  g.forEach((p, i) => { s += `<circle cx="${p[0]}" cy="${p[1]}" r="${i === 3 ? 7 : 5}" style="fill:var(--f-acc)"/>`; });
+  s += T(63, 124, 'MongoDB', 'ft-b', 'middle') + T(178, 124, 'Neo4j', 'ft-b', 'middle');
+  s += T(10, 154, 'Collecte web automatisée', 'ft-m');
+  return svg(s);
+}
+
+const FIGS = {
+  'bcn-roc':    {n:'01', label:'Airbnb BCN',  tone:'paper', fn:figRoc,      proj:'bcn'},
+  'bcn-top':    {n:'02', label:'Airbnb BCN',  tone:'dark',  fn:figTop200,   proj:'bcn'},
+  'orange':     {n:'03', label:'Orange',      tone:'iode',  fn:figPipeline, proj:'orange'},
+  'falcon':     {n:'04', label:'Falcon',      tone:'dark',  fn:figReg,      proj:'falcon'},
+  'esenca':     {n:'05', label:'ESENCA',      tone:'paper', fn:figStar,     proj:'esenca'},
+  'off':        {n:'06', label:'Open Food Facts', tone:'iode', fn:figOff,   proj:'but'},
+  'nosql':      {n:'07', label:'NoSQL',       tone:'dark',  fn:figNoSql,    proj:'but'},
+  'onto-kappa': {n:'08', label:'OntoThyroid', tone:'paper', fn:figKappa,    proj:'onto'}
+};
+const PROJECTS = {
+  onto: {figs:['onto-kappa'], meta:'Master MIAS · équipe de 4 · 2026', title:'OntoThyroid',
+    sub:'Ontologie médicale de la thyroïde et de ses pathologies',
+    kpis:[['300+','classes en 11 branches'],['7 200','dossiers patients'],['0,98','Kappa du J48']],
+    bullets:[
+      'Modélisation sous Protégé (OWL) de la thyroïde et de plus de 80 pathologies (hypothyroïdies, hyperthyroïdies, thyroïdites, nodules, cancers) : 300+ classes en 11 branches (étiologies, symptômes, examens, traitements, patients…).',
+      'Peuplement de l’ontologie avec 7 200 dossiers patients (antécédents, traitements, dosages TSH, T3, TT4, FTI) via Python (owlready2) ; règles SWRL d’interprétation des dosages et alertes cliniques ; requêtes SPARQL.',
+      'Fouille de données sous Weka (J48, Random Forest, Naive Bayes ; validation croisée 10 plis) : J48 à 99,7 % d’exactitude (Kappa 0,98) ; les attributs inférés par l’ontologie portent le Kappa du Naive Bayes de 0,60 à 0,73.'],
+    tags:['Protégé','OWL','SWRL','SPARQL','Python · owlready2','Weka']},
+  bcn: {figs:['bcn-roc','bcn-top'], meta:'Master MIAS · 2026', title:'Inside Airbnb Barcelone',
+    sub:'Prédiction des prix et contrôle des licences',
+    kpis:[['15 293','annonces analysées'],['0,92','AUC licences'],['97 %','non-conformes dans le top 200']],
+    bullets:[
+      'Sur 15 293 annonces : classification des logements sans licence pour cibler les inspections (HistGradientBoosting, AUC 0,92 ; 97 % de non-conformes parmi les 200 prioritaires) et régression des prix (Ridge, R² 0,60).',
+      'Validation croisée groupée par hôte, audit des fuites de données, réseau de neurones en NumPy, analyse d’équité.'],
+    tags:['HistGradientBoosting','Ridge','NumPy','Validation croisée groupée','Analyse d’équité']},
+  orange: {figs:['orange'], meta:'Data Analyst · mission · 09/2025 – 12/2025', title:'Orange (B2B)',
+    sub:'Pipeline automatisé de données de prospection', kpis:[],
+    bullets:[
+      'Développement d’un pipeline Python automatisé (API REST) pour collecter des données de prospection B2B.',
+      'Nettoyage, structuration et contrôle qualité des données avec Pandas, pour fiabiliser les jeux de données.',
+      'Traduction d’un besoin métier en une solution opérationnelle documentée, testée et mise en production.'],
+    tags:['Python','API REST','Pandas']},
+  esenca: {figs:['esenca'], meta:'Analyste BI · stage · 04/2024 – 06/2024', title:'ESENCA',
+    sub:'Tableaux de bord Power BI', kpis:[['3','tableaux de bord déployés']],
+    bullets:[
+      'Conception et déploiement de 3 tableaux de bord Power BI (modélisation en étoile, mesures DAX).',
+      'Extraction et requêtage de plusieurs millions de lignes sur une base HFSQL (Hyperfile).',
+      'Recueil des besoins métier et traduction en indicateurs de pilotage actionnables.'],
+    tags:['Power BI','DAX','Modélisation en étoile','HFSQL']},
+  falcon: {figs:['falcon'], meta:'Data Analyst · stage · 03/2025 – 07/2025', title:'Falcon Marketing',
+    sub:'Données CRM et modèle prédictif', kpis:[],
+    bullets:[
+      'Analyse de données CRM et construction d’indicateurs de performance et de tableaux de bord décisionnels.',
+      'Développement d’un modèle prédictif par régression à partir de données historiques.',
+      'Normalisation et contrôle qualité des données, puis restitution des résultats aux équipes métier via Power BI.'],
+    tags:['CRM','Régression','Power BI']},
+  but: {figs:['off','nosql'], meta:'BUT Science des données · 2022 – 2025', title:'Open Food Facts & NoSQL',
+    sub:'Système décisionnel et bases NoSQL', kpis:[],
+    bullets:[
+      'Open Food Facts : système décisionnel sur plusieurs millions de lignes (API, nettoyage, modèles prédictifs).',
+      'Bases NoSQL : migration et modélisation de données dans MongoDB et Neo4j, collecte web automatisée.'],
+    tags:['API','Nettoyage','MongoDB','Neo4j','Collecte web']}
+};
+const ORDER = ['bcn','orange','falcon','esenca','but','onto'];
+
+/* ---------- chips ---------- */
+document.querySelectorAll('[data-chip]').forEach(el => {
+  const f = FIGS[el.dataset.chip]; el.classList.add('tone-' + f.tone); el.innerHTML = f.fn();
+});
+
+/* ---------- ring cards ---------- */
+const ring = document.getElementById('ring');
+const rotsD = [-4, 5, -3, 6, -5, 3, -6, 4], rotsM = [-2.5, 2, 1.5, -2, -1.5, 2.5, 2, -2];
+Object.keys(FIGS).forEach((id, i) => {
+  const f = FIGS[id], b = document.createElement('button');
+  b.type = 'button'; b.className = 'card'; b.dataset.id = id;
+  b.setAttribute('aria-label', 'Figure ' + f.n + ', ' + f.label + ' : ouvrir le dossier');
+  b.style.setProperty('--rot', rotsD[i] + 'deg'); b.style.setProperty('--rot-m', rotsM[i] + 'deg');
+  b.innerHTML = `<span class="pol"><span class="pol-img tone-${f.tone}">${f.fn()}</span><span class="pol-cap"><span>Fig. ${f.n}</span><span>${f.label}</span></span></span>`;
+  ring.appendChild(b);
+});
+const cards = [...ring.querySelectorAll('.card')];
+const narrow = matchMedia('(max-width: 900px)');
+
+/* ---------- domain filter + tilt ---------- */
+const DOM = {'bcn-roc':['ml'],'bcn-top':['ml'],'orange':['eng'],'falcon':['ml','bi'],'esenca':['bi','db'],'off':['eng','ml'],'nosql':['db','eng'],'onto-kappa':['sante','ml']};
+const fchips = [...document.querySelectorAll('[data-filter]')];
+function applyFilter(f){
+  fchips.forEach(c => c.setAttribute('aria-pressed', String(c.dataset.filter === f)));
+  cards.forEach(c => c.classList.toggle('is-dim', f !== 'all' && !DOM[c.dataset.id].includes(f)));
+}
+fchips.forEach(c => c.addEventListener('click', () => applyFilter(c.dataset.filter)));
+cards.forEach(c => {
+  c.addEventListener('pointermove', e => {
+    if (e.pointerType !== 'mouse' || narrow.matches || rm.matches) return;
+    const b = c.getBoundingClientRect(), x = (e.clientX - b.left)/b.width - .5, y = (e.clientY - b.top)/b.height - .5;
+    c.style.setProperty('--tiltY', (x*14).toFixed(1) + 'deg'); c.style.setProperty('--tiltX', (-y*14).toFixed(1) + 'deg');
+  });
+  c.addEventListener('pointerleave', () => { c.style.removeProperty('--tiltX'); c.style.removeProperty('--tiltY'); });
+});
+
+function spread(){
+  if (rm.matches) return 1;
+  const r = ring.getBoundingClientRect(), vh = innerHeight;
+  const d = Math.abs((r.top + r.height/2) - vh/2), t = Math.max(0, Math.min(1, 1 - d/(vh*.95)));
+  return .84 + .16 * (1 - Math.pow(1 - t, 3));
+}
+function layoutRing(){
+  if (narrow.matches){ cards.forEach(c => { c.style.removeProperty('--tx'); c.style.removeProperty('--ty'); }); return; }
+  const W = ring.clientWidth, H = ring.clientHeight, cw = cards[0].offsetWidth, ch = cards[0].offsetHeight;
+  const rx = Math.min(W/2 - cw/2 - 8, 540), ry = Math.min(H/2 - ch/2 - 8, 310), s = spread();
+  cards.forEach((c, i) => {
+    const a = (-90 + i*45) * Math.PI/180;
+    c.style.setProperty('--tx', f1(Math.cos(a)*rx*s) + 'px');
+    c.style.setProperty('--ty', f1(Math.sin(a)*ry*s) + 'px');
+  });
+}
+
+/* ---------- detail ---------- */
+const detail = document.getElementById('detail');
+let cur = 'bcn-roc';
+function select(id){
+  cur = id;
+  const f = FIGS[id], p = PROJECTS[f.proj], idx = ORDER.indexOf(f.proj);
+  cards.forEach(c => c.classList.toggle('is-sel', FIGS[c.dataset.id].proj === f.proj));
+  detail.innerHTML =
+    `<div class="detail-figs">
+       <div class="pol detail-pol"><span class="pol-img tone-${f.tone}">${f.fn()}</span><span class="pol-cap"><span>Fig. ${f.n}</span><span>${f.label}</span></span></div>
+       ${p.figs.length > 1 ? `<div class="fig-switch" role="group" aria-label="Figures du projet">${p.figs.map(fid => `<button type="button" data-fig="${fid}" aria-pressed="${fid === id}">Fig. ${FIGS[fid].n}</button>`).join('')}</div>` : ''}
+     </div>
+     <div class="detail-body">
+       <p class="label">${fr(p.meta)}</p>
+       <h3>${p.title}</h3>
+       <p class="detail-sub">${fr(p.sub)}</p>
+       ${p.kpis.length ? `<ul class="kpis">${p.kpis.map(k => `<li><b>${fr(k[0])}</b><span>${k[1]}</span></li>`).join('')}</ul>` : ''}
+       <ul class="bullets">${p.bullets.map(b => `<li>${fr(b)}</li>`).join('')}</ul>
+       <ul class="tags">${p.tags.map(t => `<li>${t}</li>`).join('')}</ul>
+       <div class="detail-nav"><button type="button" data-step="-1">← Précédent</button><span class="label">${idx + 1} / ${ORDER.length}</span><button type="button" data-step="1">Suivant →</button></div>
+     </div>`;
+}
+function reveal(){
+  const r = detail.getBoundingClientRect();
+  if (r.top < 60 || r.top > innerHeight * .55) detail.scrollIntoView({behavior: rm.matches ? 'auto' : 'smooth', block: 'start'});
+}
+ring.addEventListener('click', e => { const c = e.target.closest('.card'); if (c){ select(c.dataset.id); reveal(); } });
+detail.addEventListener('click', e => {
+  const fb = e.target.closest('[data-fig]'); if (fb){ select(fb.dataset.fig); return; }
+  const sb = e.target.closest('[data-step]');
+  if (sb){
+    const i = (ORDER.indexOf(FIGS[cur].proj) + Number(sb.dataset.step) + ORDER.length) % ORDER.length;
+    select(PROJECTS[ORDER[i]].figs[0]);
+  }
+});
+document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => { select(b.dataset.open); detail.scrollIntoView({behavior: rm.matches ? 'auto' : 'smooth', block: 'start'}); }));
+select(cur);
+
+/* ---------- hover previews ---------- */
+const prev = document.getElementById('preview'), prevImg = document.getElementById('prevImg'), prevN = document.getElementById('prevN'), prevL = document.getElementById('prevL');
+const PHOTO = document.querySelector('.chip-photo').src;
+const fine = matchMedia('(hover: hover) and (pointer: fine)');
+function showPrev(id){
+  if (id === 'photo'){ prevImg.className = 'pol-img pol-photo'; prevImg.innerHTML = `<img src="${PHOTO}" alt="">`; prevN.textContent = 'Lille'; prevL.textContent = 'A. Boudra'; }
+  else { const f = FIGS[id]; prevImg.className = 'pol-img tone-' + f.tone; prevImg.innerHTML = f.fn(); prevN.textContent = 'Fig. ' + f.n; prevL.textContent = f.label; }
+  prev.classList.add('on');
+}
+function movePrev(x, y){
+  const w = prev.offsetWidth, h = prev.offsetHeight;
+  let px = x + 26, py = y - h - 14;
+  if (px + w > innerWidth - 12) px = x - w - 26;
+  if (py < 70) py = y + 26;
+  prev.style.transform = `translate(${Math.round(px)}px,${Math.round(py)}px) rotate(-3deg)`;
+}
+const hidePrev = () => prev.classList.remove('on');
+document.querySelectorAll('.reveal').forEach(el => {
+  el.addEventListener('mouseenter', e => { if (!fine.matches) return; showPrev(el.dataset.prev); movePrev(e.clientX, e.clientY); });
+  el.addEventListener('mousemove', e => { if (fine.matches) movePrev(e.clientX, e.clientY); });
+  el.addEventListener('mouseleave', hidePrev);
+  el.addEventListener('focus', () => { if (!el.matches(':focus-visible')) return; const r = el.getBoundingClientRect(); showPrev(el.dataset.prev); movePrev(r.right, r.top); });
+  el.addEventListener('blur', hidePrev);
+  el.addEventListener('click', () => {
+    const id = el.dataset.prev; if (id === 'photo') return;
+    hidePrev(); select(id); detail.scrollIntoView({behavior: rm.matches ? 'auto' : 'smooth', block: 'start'});
+  });
+});
+addEventListener('scroll', hidePrev, {passive: true});
+
+/* ---------- protocol reveal ---------- */
+const steps = [...document.querySelectorAll('.step')];
+function revealSteps(){
+  if (rm.matches){ steps.forEach(s => s.style.setProperty('--o', 1)); return; }
+  const vh = innerHeight;
+  steps.forEach(s => {
+    const r = s.getBoundingClientRect(), c = r.top + r.height/2;
+    const t = Math.max(0, Math.min(1, (vh*.9 - c) / (vh*.32)));
+    s.style.setProperty('--o', (.42 + .58*t).toFixed(3));
+  });
+}
+
+/* ---------- scroll loop ---------- */
+let ticking = false;
+function onScroll(){ if (ticking) return; ticking = true; requestAnimationFrame(() => { layoutRing(); revealSteps(); updatePill(); ticking = false; }); }
+addEventListener('scroll', onScroll, {passive: true});
+addEventListener('resize', onScroll);
+layoutRing(); revealSteps();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutRing);
+
+/* ---------- menu ---------- */
+const menu = document.getElementById('menu'), mb = document.getElementById('menuBtn');
+function setMenu(open){
+  menu.hidden = !open; mb.setAttribute('aria-expanded', String(open));
+  mb.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+  document.body.classList.toggle('menu-open', open);
+}
+mb.addEventListener('click', () => setMenu(menu.hidden));
+menu.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden){ setMenu(false); mb.focus(); } });
+
+/* ---------- clock ---------- */
+const fmt = new Intl.DateTimeFormat('fr-FR', {timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit'});
+function tick(){ const s = fmt.format(new Date()); document.querySelectorAll('[data-clock]').forEach(el => el.textContent = s); }
+tick(); setInterval(tick, 20000);
+
+/* ---------- copy email ---------- */
+const copyBtn = document.getElementById('copyMail'), mail = document.getElementById('mail');
+copyBtn.addEventListener('click', () => {
+  const fallback = () => {
+    const r = document.createRange(); r.selectNodeContents(mail);
+    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    copyBtn.textContent = 'Adresse sélectionnée, copiez-la';
+  };
+  try {
+    navigator.clipboard.writeText(mail.textContent.trim()).then(() => { copyBtn.textContent = 'Adresse copiée'; setTimeout(() => copyBtn.textContent = 'Copier l’adresse', 2400); }, fallback);
+  } catch (err){ fallback(); }
+});
+
+/* ---------- histogram fringe ---------- */
+const fringe = document.getElementById('fringe');
+let bars = '';
+for (let i = 0; i < 96; i++){
+  const x = i/95, h = 22 + 70 * Math.exp(-Math.pow((x - .34)/.2, 2)) * (.72 + .28*Math.sin(i*1.7)) + 8*Math.sin(i*.9);
+  bars += `<i style="height:${Math.max(10, Math.min(100, h)).toFixed(0)}%"></i>`;
+}
+fringe.innerHTML = bars;
+
+/* ---------- shared tooltip ---------- */
+const tip = document.createElement('div'); tip.className = 'tip'; tip.setAttribute('aria-hidden', 'true'); document.body.appendChild(tip);
+function showTip(html, x, y){
+  tip.innerHTML = html; const w = tip.offsetWidth || 220, h = tip.offsetHeight || 60;
+  let px = x + 14, py = y + 16; if (px + w > innerWidth - 8) px = x - w - 14; if (py + h > innerHeight - 8) py = y - h - 12;
+  tip.style.transform = `translate(${Math.round(px)}px,${Math.round(py)}px)`; tip.classList.add('on');
+}
+const hideTip = () => tip.classList.remove('on');
+addEventListener('scroll', hideTip, {passive: true});
+const goDetail = id => { select(id); detail.scrollIntoView({behavior: rm.matches ? 'auto' : 'smooth', block: 'start'}); };
+document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => document.getElementById(b.dataset.go).scrollIntoView({behavior: rm.matches ? 'auto' : 'smooth'})));
+
+/* ---------- lab: accuracy vs kappa ---------- */
+(function(){
+  const svgEl = document.getElementById('labSvg'); if (!svgEl) return;
+  const COLS = 40, ROWS = 25, N = 1000, G = 10;
+  let sd = 2027; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+  const gauss = () => { let u = 0; while (u === 0) u = rnd(); return Math.sqrt(-2*Math.log(u)) * Math.cos(2*Math.PI*rnd()); };
+  const cl = x => Math.max(.01, Math.min(.99, x));
+  const POS = Array.from({length: N}, () => cl(.66 + .16*gauss()));
+  const NEG = Array.from({length: N}, () => cl(.36 + .16*gauss()));
+  let html = '';
+  for (let i = 0; i < N; i++) html += `<circle cx="${5 + (i % COLS)*G}" cy="${5 + Math.floor(i / COLS)*G}" r="3.4"/>`;
+  svgEl.innerHTML = html;
+  const dots = svgEl.querySelectorAll('circle'), $ = id => document.getElementById(id);
+  const prevI = $('prev'), thrI = $('thr'), naiveB = $('naive');
+  const pct = x => (x*100).toFixed(1).replace('.', ',').replace(/,0$/, '') + NB + '%';
+  const num = x => x.toFixed(2).replace('.', ',').replace(/^-0,00$/, '0,00');
+  let people = [];
+  function update(){
+    const p = Number(prevI.value)/100, thr = Number(thrI.value), naive = naiveB.getAttribute('aria-pressed') === 'true', P = Math.round(N*p);
+    let TP = 0, FN = 0, FP = 0, TN = 0; people = [];
+    for (let i = 0; i < N; i++){
+      const pos = i < P, sc = pos ? POS[i] : NEG[i], pred = !naive && sc >= thr;
+      const k = pos ? (pred ? 'tp' : 'fn') : (pred ? 'fp' : 'tn');
+      if (k === 'tp') TP++; else if (k === 'fn') FN++; else if (k === 'fp') FP++; else TN++;
+      people.push([pos, sc, pred, k]); dots[i].setAttribute('class', 'd-' + k);
+    }
+    const acc = (TP + TN)/N, pe = ((TP + FP)*(TP + FN) + (FN + TN)*(FP + TN))/(N*N), kap = pe >= 1 ? 0 : (acc - pe)/(1 - pe);
+    const pre = TP + FP ? TP/(TP + FP) : null, rec = TP + FN ? TP/(TP + FN) : null;
+    $('prevOut').textContent = Math.round(p*100) + NB + '%'; $('thrOut').textContent = num(thr);
+    $('mAcc').textContent = pct(acc); $('mKap').textContent = num(kap);
+    $('mPre').textContent = pre === null ? '—' : pct(pre); $('mRec').textContent = rec === null ? '—' : pct(rec);
+    $('cTP').textContent = TP; $('cFN').textContent = FN; $('cFP').textContent = FP; $('cTN').textContent = TN;
+    $('labLegend').innerHTML = `<span><i class="sw sw-tp"></i>Vrais positifs · ${TP}</span><span><i class="sw sw-fn"></i>Faux négatifs · ${FN}</span><span><i class="sw sw-fp"></i>Faux positifs · ${FP}</span><span><i class="sw sw-tn"></i>Vrais négatifs · ${TN}</span>`;
+    $('labSay').textContent = naive
+      ? `${pct(acc)} d’exactitude sans détecter un seul des ${TP + FN} cas positifs. Le Kappa tombe à 0.`
+      : `Le modèle retrouve ${TP} cas positifs sur ${TP + FN} et lève ${FP} fausse${FP > 1 ? 's' : ''} alerte${FP > 1 ? 's' : ''}.`;
+    thrI.disabled = naive;
+  }
+  prevI.addEventListener('input', update); thrI.addEventListener('input', update);
+  naiveB.addEventListener('click', () => { naiveB.setAttribute('aria-pressed', String(naiveB.getAttribute('aria-pressed') !== 'true')); update(); });
+  const NAMES = {tp: 'vrai positif', fn: 'faux négatif', fp: 'faux positif', tn: 'vrai négatif'};
+  svgEl.addEventListener('pointermove', e => {
+    const b = svgEl.getBoundingClientRect(), sx = (e.clientX - b.left) * 400 / b.width, sy = (e.clientY - b.top) * 250 / b.height;
+    const c = Math.floor(sx / G), rr = Math.floor(sy / G), i = rr*COLS + c;
+    if (c < 0 || c >= COLS || rr < 0 || rr >= ROWS || !people[i]){ hideTip(); return; }
+    const [pos, sc, pred, k] = people[i];
+    showTip(`<b>Individu ${i + 1}</b><br>Réel : ${pos ? 'positif' : 'négatif'} · score ${num(sc)}<br>Prédit : ${pred ? 'positif' : 'négatif'} (${NAMES[k]})`, e.clientX, e.clientY);
+  });
+  svgEl.addEventListener('pointerleave', hideTip);
+  update();
+})();
+
+/* ---------- lab tabs ---------- */
+const TABS = [...document.querySelectorAll('.lab-tab[data-tab]')];
+function openTab(tok, focus){
+  TABS.forEach(t => {
+    const on = t.dataset.tab === tok;
+    t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1;
+    document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    if (on && focus) t.focus();
+  });
+  hideTip();
+}
+TABS.forEach((t, i) => {
+  t.addEventListener('click', () => openTab(t.dataset.tab));
+  t.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    e.preventDefault(); const n = TABS[(i + (e.key === 'ArrowRight' ? 1 : -1) + TABS.length) % TABS.length]; openTab(n.dataset.tab, true);
+  });
+});
+function goLab(tok){ openTab(tok); document.getElementById('labo').scrollIntoView({behavior: rm.matches ? 'auto' : 'smooth'}); }
+document.querySelectorAll('[data-lab]').forEach(b => b.addEventListener('click', () => goLab(b.dataset.lab)));
+const hashTok = (location.hash || '').slice(1);
+if (TABS.some(t => t.dataset.tab === hashTok)) openTab(hashTok);
+const sgn = v => (v < 0 ? '−' : '') + Math.abs(v).toFixed(2).replace('.', ',');
+const esc = v => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+function segSingle(group, attr, cb){
+  group.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    group.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    cb(b.dataset[attr]);
+  });
+}
+
+/* ---------- lab 02: data quality ---------- */
+(function(){
+  const tb = document.getElementById('dqTable'); if (!tb) return;
+  const RAW = [['ACME SAS','lille','contact@acme.fr','120'],['Acme sas ','Lille','contact@acme.fr','120'],['Boulangerie Dupré','Roubaix','dupre@@mail',''],
+    ['NORDLINE','LILLE ','info@nordline.io','45'],['Nordline','Lille','info@nordline.io','45'],['Optique Martin','','martin.optique@mail.fr','8'],
+    ['Studio Kéa','Tourcoing','hello@studiokea','12'],['Verdi Logistique','Wasquehal','contact@verdi-log.fr','n/a']];
+  const EMAIL = /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i, INT = /^\d+$/;
+  const title = v => v.trim().toLowerCase().replace(/(^|[^\p{L}])(\p{L})/gu, (m, a, b) => a + b.toUpperCase());
+  const el = id => document.getElementById(id);
+  const T = {norm: el('dqNorm'), dup: el('dqDup'), mail: el('dqMail'), num: el('dqNum')};
+  const CODE = [['', '# df : export brut de prospection'], ['norm', 'df["entreprise"] = df["entreprise"].str.strip().str.title()'], ['norm', 'df["ville"] = df["ville"].str.strip().str.title()'],
+    ['dup', 'df = df.drop_duplicates(subset=["entreprise", "email"])'], ['mail', 'df["email"] = df["email"].where(df["email"].str.match(EMAIL, na=False))'],
+    ['num', 'df["effectif"] = pd.to_numeric(df["effectif"], errors="coerce")'], ['num', 'df["effectif"] = df["effectif"].fillna(df["effectif"].median())']];
+  function run(){
+    const on = {norm: T.norm.checked, dup: T.dup.checked, mail: T.mail.checked, num: T.num.checked};
+    const rows = RAW.map((rw, i) => ({i, dup: false, c: rw.map(v => ({v, st: ''}))}));
+    if (on.norm) rows.forEach(rw => [0, 1].forEach(j => { const nv = title(rw.c[j].v); if (nv !== rw.c[j].v){ rw.c[j].v = nv; rw.c[j].st = 'mod'; } }));
+    if (on.dup){ const seen = new Set(); rows.forEach(rw => { const k = rw.c[0].v + '|' + rw.c[2].v; if (seen.has(k)) rw.dup = true; else seen.add(k); }); }
+    const kept = rows.filter(rw => !rw.dup);
+    kept.forEach(rw => { const e = rw.c[2]; if (e.v && !EMAIL.test(e.v)){ if (on.mail){ e.v = ''; e.st = 'nul'; } else e.st = 'bad'; } });
+    let med = null;
+    if (on.num){
+      const nums = kept.map(rw => rw.c[3].v).filter(v => INT.test(v)).map(Number).sort((x, y) => x - y), L = nums.length;
+      med = L ? (L % 2 ? nums[(L - 1)/2] : (nums[L/2 - 1] + nums[L/2]) / 2) : 0;
+      kept.forEach(rw => { const c = rw.c[3]; if (!INT.test(c.v)){ c.v = String(med).replace('.', ','); c.st = 'imp'; } });
+    } else kept.forEach(rw => { const c = rw.c[3]; if (c.v && !INT.test(c.v)) c.st = 'bad'; });
+    let filled = 0, checked = 0, valid = 0, bad = 0;
+    kept.forEach(rw => rw.c.forEach((c, j) => {
+      if (c.v.trim() !== '') filled++;
+      if (c.st === 'bad') bad++;
+      if ((j === 2 || j === 3) && c.v.trim() !== ''){ checked++; if (j === 2 ? EMAIL.test(c.v) : /^\d+(,\d+)?$/.test(c.v)) valid++; }
+    }));
+    const keys = new Set(kept.map(rw => title(RAW[rw.i][0]) + '|' + RAW[rw.i][2]));
+    const dupLeft = kept.length - keys.size;
+    const M = [['Complétude', filled / (kept.length*4)], ['Unicité', keys.size / kept.length], ['Validité', checked ? valid/checked : 1]];
+    tb.innerHTML = '<thead><tr><th scope="col">Entreprise</th><th scope="col">Ville</th><th scope="col">E-mail</th><th scope="col">Effectif</th></tr></thead><tbody>' +
+      rows.map(rw => `<tr${rw.dup ? ' class="is-dup" title="Doublon supprimé"' : ''}>` + rw.c.map(c => {
+        const empty = c.v.trim() === '';
+        const txt = empty ? (c.st === 'nul' ? 'vide' : '—') : esc(c.v) + (c.st === 'imp' ? '<small>imputé</small>' : '');
+        const cls = rw.dup ? '' : [c.st === 'mod' || c.st === 'imp' ? 'mod' : '', c.st === 'bad' ? 'bad' : '', empty ? 'miss' : ''].join(' ').trim();
+        return `<td${cls ? ` class="${cls}"` : ''}>${c.st === 'bad' && !rw.dup ? '⚠ ' : ''}${txt}</td>`;
+      }).join('') + '</tr>').join('') + '</tbody>';
+    document.getElementById('dqBars').innerHTML = M.map(([n, v]) =>
+      `<div class="bar-row"><span>${n}</span><span class="bar-tr"><i style="width:${(v*100).toFixed(1)}%"></i></span><b>${Math.round(v*100)}${NB}%</b></div>`).join('') +
+      `<p class="label">${kept.length} lignes conservées sur ${RAW.length}</p>`;
+    document.getElementById('dqCode').innerHTML = CODE.map(([k, t]) => k ? `<span class="ln${on[k] ? ' on' : ''}">${esc(t)}</span>` : `<span class="ln on cm-c">${esc(t)}</span>`).join('');
+    const all = on.norm && on.dup && on.mail && on.num, none = !on.norm && !on.dup && !on.mail && !on.num;
+    let say;
+    if (on.dup && !on.norm) say = 'Aucun doublon trouvé : sans normalisation, « ACME SAS » et « Acme sas » restent deux entreprises différentes pour la machine.';
+    else if (all) say = `Données prêtes : ${kept.length} lignes et 100 % de validité. La complétude baisse un peu, car les e-mails invalides ont été vidés plutôt que gardés.`;
+    else if (none) say = 'Fichier brut : des doublons cachés par la casse, des e-mails invalides et des effectifs mal typés.';
+    else { const n = bad + dupLeft; say = n ? `Encore ${n} problème${n > 1 ? 's' : ''} : ${bad ? bad + ' valeur' + (bad > 1 ? 's' : '') + ' invalide' + (bad > 1 ? 's' : '') : ''}${bad && dupLeft ? ' et ' : ''}${dupLeft ? dupLeft + ' doublon' + (dupLeft > 1 ? 's' : '') : ''}.` : 'Plus aucun problème détecté sur ce fichier.'; }
+    document.getElementById('dqSay').textContent = fr(say);
+  }
+  Object.values(T).forEach(x => x.addEventListener('change', run));
+  run();
+})();
+
+/* ---------- lab 03: overfitting ---------- */
+(function(){
+  const sv = document.getElementById('ofSvg'); if (!sv) return;
+  const el = id => document.getElementById(id);
+  const degI = el('ofDeg'), noiI = el('ofNoise'), testB = el('ofTest'), cur = el('ofCurve');
+  let seed0 = 41, X = [], E = [], isTest = [];
+  const f = x => .85*Math.sin(2.4*x) + .25*x;
+  function sample(){
+    let sd = seed0; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+    const g = () => { let u = 0; while (u === 0) u = rnd(); return Math.sqrt(-2*Math.log(u)) * Math.cos(2*Math.PI*rnd()); };
+    X = Array.from({length: 24}, (_, i) => -1 + (i + .15 + .7*rnd()) * 2/24);
+    E = X.map(() => g());
+    const idx = X.map((_, i) => i); for (let i = idx.length - 1; i > 0; i--){ const j = Math.floor(rnd()*(i + 1)); [idx[i], idx[j]] = [idx[j], idx[i]]; }
+    isTest = Array(24).fill(false); idx.slice(0, 8).forEach(i => isTest[i] = true);
+  }
+  const basis = (x, d) => { const t = [1, x]; for (let k = 2; k <= d; k++) t.push(2*x*t[k - 1] - t[k - 2]); return t.slice(0, d + 1); };
+  function fit(xs, ys, d){
+    const m = d + 1, A = Array.from({length: m}, () => new Float64Array(m + 1));
+    xs.forEach((x, i) => { const b = basis(x, d); for (let a = 0; a < m; a++){ for (let c = 0; c < m; c++) A[a][c] += b[a]*b[c]; A[a][m] += b[a]*ys[i]; } });
+    for (let a = 0; a < m; a++) A[a][a] += 1e-9;
+    for (let c = 0; c < m; c++){
+      let pv = c; for (let a = c + 1; a < m; a++) if (Math.abs(A[a][c]) > Math.abs(A[pv][c])) pv = a;
+      const tmp = A[c]; A[c] = A[pv]; A[pv] = tmp;
+      const piv = A[c][c] || 1e-12;
+      for (let a = 0; a < m; a++){ if (a === c) continue; const k = A[a][c]/piv; if (k) for (let cc = c; cc <= m; cc++) A[a][cc] -= k*A[c][cc]; }
+    }
+    return Array.from({length: m}, (_, a) => A[a][m] / (A[a][a] || 1e-12));
+  }
+  const pred = (w, x) => basis(x, w.length - 1).reduce((acc, b, i) => acc + b*w[i], 0);
+  const r2 = (w, xs, ys) => { const mu = ys.reduce((a, b) => a + b, 0)/ys.length; let rs = 0, ts = 0; xs.forEach((x, i) => { rs += (ys[i] - pred(w, x))**2; ts += (ys[i] - mu)**2; }); return ts ? 1 - rs/ts : 0; };
+  const PX = x => 30 + (x + 1)*180, PY = y => 128 - y*66;
+  let lastScores = [];
+  function update(){
+    const d = Number(degI.value), noise = Number(noiI.value), showT = testB.getAttribute('aria-pressed') === 'true';
+    el('ofDegOut').textContent = d; el('ofNoiseOut').textContent = noise.toFixed(2).replace('.', ',');
+    const Y = X.map((x, i) => f(x) + noise*.5*E[i]);
+    const trX = [], trY = [], teX = [], teY = [];
+    X.forEach((x, i) => (isTest[i] ? (teX.push(x), teY.push(Y[i])) : (trX.push(x), trY.push(Y[i]))));
+    lastScores = [];
+    for (let k = 1; k <= 12; k++){ const w = fit(trX, trY, k); lastScores.push([r2(w, trX, trY), r2(w, teX, teY)]); }
+    const w = fit(trX, trY, d), [tr, te] = lastScores[d - 1];
+    let pth = '';
+    for (let i = 0; i <= 180; i++){ const x = -1 + i/90; const yy = Math.max(-3, Math.min(3, pred(w, x))); pth += (i ? 'L' : 'M') + PX(x).toFixed(1) + ' ' + PY(yy).toFixed(1); }
+    let g = `<defs><clipPath id="ofClip"><rect x="24" y="10" width="372" height="240"/></clipPath></defs>`;
+    g += `<line x1="24" y1="${PY(0)}" x2="396" y2="${PY(0)}" style="stroke:var(--line)" stroke-width="1"/>`;
+    g += `<path d="${pth}" clip-path="url(#ofClip)" style="fill:none;stroke:var(--ink)" stroke-width="2" stroke-linejoin="round"/>`;
+    X.forEach((x, i) => {
+      if (isTest[i] && !showT) return;
+      g += isTest[i]
+        ? `<circle cx="${PX(x).toFixed(1)}" cy="${PY(Y[i]).toFixed(1)}" r="4.6" style="fill:var(--paper-hi);stroke:var(--c2)" stroke-width="2"/>`
+        : `<circle cx="${PX(x).toFixed(1)}" cy="${PY(Y[i]).toFixed(1)}" r="4.6" style="fill:var(--c1);stroke:var(--paper-hi)" stroke-width="1.5"/>`;
+    });
+    sv.innerHTML = g;
+    el('ofTr').textContent = sgn(tr); el('ofTe').textContent = sgn(te);
+    // R² vs degree chart
+    const L = 34, Rr = 308, Tt = 10, B = 122, lo = -.3, hi = 1;
+    const mx = k => L + (k - 1)/11*(Rr - L), my = v => B - (Math.max(lo, Math.min(hi, v)) - lo)/(hi - lo)*(B - Tt);
+    let c = '';
+    [0, .5, 1].forEach(v => { c += `<line x1="${L}" y1="${my(v).toFixed(1)}" x2="${Rr}" y2="${my(v).toFixed(1)}" style="stroke:var(--line)"/><text x="${L - 6}" y="${(my(v) + 3).toFixed(1)}" text-anchor="end" style="font:500 9px var(--mono);fill:var(--muted)">${String(v).replace('.', ',')}</text>`; });
+    [1, 4, 8, 12].forEach(k => { c += `<text x="${mx(k).toFixed(1)}" y="${B + 14}" text-anchor="middle" style="font:500 9px var(--mono);fill:var(--muted)">${k}</text>`; });
+    c += `<text x="${Rr}" y="${B + 30}" text-anchor="end" style="font:500 8.5px var(--mono);letter-spacing:.08em;fill:var(--muted)">DEGRÉ</text>`;
+    c += `<line x1="${mx(d).toFixed(1)}" y1="${Tt}" x2="${mx(d).toFixed(1)}" y2="${B}" style="stroke:var(--ink);opacity:.35"/>`;
+    [[0, 'var(--c1)'], [1, 'var(--c2)']].forEach(([j, col]) => {
+      c += `<path d="${lastScores.map((v, k) => (k ? 'L' : 'M') + mx(k + 1).toFixed(1) + ' ' + my(v[j]).toFixed(1)).join('')}" style="fill:none;stroke:${col}" stroke-width="2" stroke-linejoin="round"/>`;
+      c += `<circle cx="${mx(d).toFixed(1)}" cy="${my(lastScores[d - 1][j]).toFixed(1)}" r="4.5" style="fill:${col};stroke:var(--paper)" stroke-width="2"/>`;
+    });
+    const step = (Rr - L)/11;
+    for (let k = 1; k <= 12; k++) c += `<rect class="ofhit" data-k="${k}" x="${(mx(k) - step/2).toFixed(1)}" y="${Tt - 6}" width="${step.toFixed(1)}" height="${B - Tt + 22}" style="fill:transparent;cursor:pointer"/>`;
+    cur.innerHTML = c;
+    let best = 1; lastScores.forEach((v, k) => { if (v[1] > lastScores[best - 1][1]) best = k + 1; });
+    let say;
+    if (tr < .55) say = `Sous-apprentissage : un polynôme de degré ${d} est trop simple pour la forme des données.`;
+    else if (te < tr - .2) say = `Surapprentissage : le modèle suit le bruit. Il explique ${Math.round(tr*100)} % de la variance en apprentissage, mais ${te < 0 ? 'fait pire que la moyenne' : 'seulement ' + Math.round(te*100) + ' %'} sur le test.`;
+    else say = 'Bon compromis : les scores d’apprentissage et de test restent proches.';
+    el('ofSay').textContent = fr(say + ` Sur cet échantillon, le meilleur degré en test est ${best}.`);
+  }
+  cur.addEventListener('pointermove', e => {
+    const h = e.target.closest('.ofhit'); if (!h){ hideTip(); return; }
+    const k = Number(h.dataset.k), v = lastScores[k - 1];
+    showTip(`<b>Degré ${k}</b><br>R² apprentissage : ${sgn(v[0])}<br>R² test : ${sgn(v[1])}`, e.clientX, e.clientY);
+  });
+  cur.addEventListener('pointerleave', hideTip);
+  cur.addEventListener('click', e => { const h = e.target.closest('.ofhit'); if (h){ degI.value = h.dataset.k; update(); } });
+  degI.addEventListener('input', update); noiI.addEventListener('input', update);
+  el('ofNew').addEventListener('click', () => { seed0 = (seed0 * 48271) % 2147483647; sample(); update(); });
+  testB.addEventListener('click', () => { testB.setAttribute('aria-pressed', String(testB.getAttribute('aria-pressed') !== 'true')); update(); });
+  sample(); update();
+})();
+
+/* ---------- lab 04b: leakage ---------- */
+(function(){
+  const grid = document.getElementById('lkGrid'); if (!grid) return;
+  const el = id => document.getElementById(id);
+  const SIZES = [9, 8, 7, 6, 6, 5, 5, 4, 4, 3, 2, 1], HOSTS = SIZES.map((n, i) => ({name: 'Hôte ' + String.fromCharCode(65 + i), n}));
+  const LS = []; HOSTS.forEach((h, hi) => { for (let k = 0; k < h.n; k++) LS.push({h: hi, f: 0}); });
+  let split = 'random', fold = 0, seed = 7;
+  function assign(){
+    let sd = seed; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+    const shuffle = a => { for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(rnd()*(i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+    if (split === 'random') shuffle(LS.map((_, i) => i)).forEach((li, k) => { LS[li].f = k % 5; });
+    else {
+      const tot = [0, 0, 0, 0, 0];
+      shuffle(HOSTS.map((_, i) => i)).sort((x, y) => HOSTS[y].n - HOSTS[x].n).forEach(hi => {
+        let best = 0; for (let k = 1; k < 5; k++) if (tot[k] < tot[best]) best = k;
+        tot[best] += HOSTS[hi].n; LS.forEach(l => { if (l.h === hi) l.f = best; });
+      });
+    }
+  }
+  function render(){
+    let both = 0, testN = 0, known = 0, html = '';
+    HOSTS.forEach((h, hi) => {
+      const ls = LS.filter(l => l.h === hi).sort((x, y) => (x.f === fold ? 0 : 1) - (y.f === fold ? 0 : 1));
+      const te = ls.filter(l => l.f === fold).length, trn = ls.length - te, leak = te > 0 && trn > 0;
+      testN += te; if (leak){ both++; known += te; }
+      html += `<div class="lk-row${leak ? ' leak' : ''}"><span class="lk-name">${h.name}</span><span class="lk-sq">${ls.map(l => `<i class="${l.f === fold ? 'te' : 'tr'}"></i>`).join('')}</span><span class="lk-flag">${leak ? '⚠ fuite' : ''}</span></div>`;
+    });
+    grid.innerHTML = html;
+    el('lkHosts').textContent = both + ' / 12';
+    const share = testN ? Math.round(known/testN*100) : 0;
+    el('lkShare').textContent = share + NB + '%';
+    el('lkSay').textContent = fr(split === 'group'
+      ? `Aucun hôte partagé : le pli ${fold + 1} teste le modèle sur ${testN} annonces d’hôtes qu’il n’a jamais vus. C’est le découpage utilisé sur le projet Airbnb.`
+      : both ? `${both} hôte${both > 1 ? 's' : ''} sur 12 se retrouve${both > 1 ? 'nt' : ''} des deux côtés : ${share} % des annonces de test ont un « jumeau » du même hôte dans l’apprentissage. Le score de validation sera trop optimiste.`
+             : 'Par chance, aucun hôte partagé sur ce pli. Re-mélangez : avec un découpage aléatoire, ça arrive rarement.');
+  }
+  segSingle(el('lkSplit'), 'split', v => { split = v; assign(); render(); });
+  segSingle(el('lkFold'), 'fold', v => { fold = Number(v); render(); });
+  el('lkShuffle').addEventListener('click', () => { seed = (seed * 48271) % 2147483647; assign(); render(); });
+  assign(); render();
+})();
+
+/* ---------- lab 05: BI dashboard ---------- */
+(function(){
+  const root = document.getElementById('dash'); if (!root) return;
+  const el = id => document.getElementById(id);
+  const MONTHS = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'], ML = 'JFMAMJJASOND';
+  const REG = ['Nord', 'Est', 'Ouest', 'Sud'], RB = [1.3, .9, 1, .8];
+  const CAT = ['Matériel', 'Logiciel', 'Services'], CB = [30, 45, 14], CP = [420, 260, 780];
+  let sd = 99; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+  const F = [];
+  for (let m = 0; m < 12; m++) for (let rg = 0; rg < 4; rg++) for (let c = 0; c < 3; c++){
+    const season = 1 + .18*Math.sin((m - 2)/12*2*Math.PI) + .012*m, n = Math.round(CB[c]*RB[rg]*season*(.85 + .3*rnd()));
+    F.push({m, rg, c, n, ca: n*CP[c]*(.9 + .2*rnd())});
+  }
+  const st = {q: 0, regs: new Set([0, 1, 2, 3]), cat: -1};
+  const inQ = (m, q) => q === 0 || Math.floor(m/3) === q - 1;
+  const okRC = x => st.regs.has(x.rg) && (st.cat < 0 || x.c === st.cat);
+  const sum = (arr, k) => arr.reduce((a, x) => a + x[k], 0);
+  const eur = v => v >= 1e6 ? (v/1e6).toFixed(2).replace('.', ',') + NB + 'M€' : Math.round(v/1e3) + NB + 'k€';
+  const int = v => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, NB);
+  const nice = v => { const e = Math.pow(10, Math.floor(Math.log10(v))), q = v/e; return (q <= 1 ? 1 : q <= 2 ? 2 : q <= 5 ? 5 : 10)*e; };
+  const QN = ['l’année', 'T1', 'T2', 'T3', 'T4'];
+  let mvals = [];
+  function syncControls(){
+    el('dbQ').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(Number(b.dataset.q) === st.q)));
+    el('dbR').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(st.regs.has(Number(b.dataset.r)))));
+    el('dbC').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(Number(b.dataset.c) === st.cat)));
+  }
+  function render(){
+    syncControls();
+    const cur = F.filter(x => inQ(x.m, st.q) && okRC(x)), ca = sum(cur, 'ca'), n = sum(cur, 'n');
+    el('kCA').textContent = eur(ca); el('kN').textContent = int(n); el('kAvg').textContent = n ? int(ca/n) + NB + '€' : '—';
+    if (st.q > 1){
+      const cp = sum(F.filter(x => inQ(x.m, st.q - 1) && okRC(x)), 'ca'), ev = cp ? (ca - cp)/cp : 0;
+      el('kEvo').innerHTML = `<span class="arr" aria-hidden="true">${ev >= 0 ? '▲' : '▼'}</span>${ev >= 0 ? '+' : '−'}${Math.abs(ev*100).toFixed(1).replace('.', ',')}${NB}%`;
+      el('kEvoSub').textContent = 'par rapport à T' + (st.q - 1);
+    } else { el('kEvo').textContent = '—'; el('kEvoSub').textContent = st.q === 1 ? 'pas de trimestre précédent' : 'choisissez T2, T3 ou T4'; }
+    // months
+    mvals = MONTHS.map((_, m) => { const xs = F.filter(x => x.m === m && okRC(x)); return [sum(xs, 'ca'), sum(xs, 'n')]; });
+    const top = nice(Math.max(...mvals.map(v => v[0]), 1)), L = 54, Rr = 414, Tt = 16, B = 166, slot = (Rr - L)/12;
+    const yy = v => B - v/top*(B - Tt);
+    let g = '';
+    [0, top/2, top].forEach(v => { g += `<line x1="${L}" y1="${yy(v).toFixed(1)}" x2="${Rr}" y2="${yy(v).toFixed(1)}" style="stroke:var(--line)"/><text x="${L - 6}" y="${(yy(v) + 3).toFixed(1)}" text-anchor="end" style="font:500 10.5px var(--mono);fill:var(--muted)">${v ? eur(v) : '0'}</text>`; });
+    let bestM = -1; mvals.forEach((v, m) => { if (inQ(m, st.q) && (bestM < 0 || v[0] > mvals[bestM][0])) bestM = m; });
+    mvals.forEach((v, m) => {
+      const x = L + m*slot + 2, w = slot - 4, y = yy(v[0]), h = B - y, rr = Math.min(4, h, w/2), on = inQ(m, st.q);
+      g += `<path d="M${x.toFixed(1)} ${B}V${(y + rr).toFixed(1)}Q${x.toFixed(1)} ${y.toFixed(1)} ${(x + rr).toFixed(1)} ${y.toFixed(1)}H${(x + w - rr).toFixed(1)}Q${(x + w).toFixed(1)} ${y.toFixed(1)} ${(x + w).toFixed(1)} ${(y + rr).toFixed(1)}V${B}Z" style="fill:${on ? 'var(--c1)' : 'var(--c0)'}"/>`;
+      g += `<text x="${(x + w/2).toFixed(1)}" y="${B + 14}" text-anchor="middle" style="font:500 11px var(--mono);fill:${on ? 'var(--ink-2)' : 'var(--muted)'}">${ML[m]}</text>`;
+      if (m === bestM) g += `<text x="${(x + w/2).toFixed(1)}" y="${(y - 5).toFixed(1)}" text-anchor="middle" style="font:500 10.5px var(--mono);fill:var(--ink)">${eur(v[0])}</text>`;
+      g += `<rect class="mhit" data-m="${m}" x="${(L + m*slot).toFixed(1)}" y="${Tt}" width="${slot.toFixed(1)}" height="${B - Tt + 18}" style="fill:transparent;cursor:pointer"/>`;
+    });
+    el('dbMonths').innerHTML = g;
+    // regions
+    const rv = REG.map((name, rg) => ({rg, name, v: sum(F.filter(x => inQ(x.m, st.q) && x.rg === rg && (st.cat < 0 || x.c === st.cat)), 'ca')})).sort((a, b) => b.v - a.v);
+    const rmax = Math.max(...rv.map(x => x.v), 1);
+    el('dbRegions').innerHTML = rv.map(x => `<button type="button" class="hb${st.regs.has(x.rg) ? '' : ' off'}" data-r="${x.rg}" aria-pressed="${st.regs.has(x.rg)}" aria-label="${x.name}, ${eur(x.v)} : ${st.regs.has(x.rg) ? 'retirer du filtre' : 'ajouter au filtre'}"><span>${x.name}</span><span class="hb-tr"><i style="width:${(x.v/rmax*100).toFixed(1)}%"></i></span><b>${eur(x.v)}</b></button>`).join('');
+    // star schema
+    const act = {t: st.q !== 0, r: st.regs.size < 4, c: st.cat >= 0};
+    const node = (x, y, w, h, label, on) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="2" style="fill:${on ? 'rgba(199,128,44,.2)' : 'var(--paper)'};stroke:${on ? 'var(--c2)' : 'var(--ink-2)'}" stroke-width="${on ? 1.8 : 1}"/><text x="${x + w/2}" y="${y + h/2 + 3.5}" text-anchor="middle" style="font:500 9.5px var(--mono);fill:var(--ink)">${label}</text>`;
+    const edge = (x1, y1, on) => `<line x1="${x1}" y1="${y1}" x2="110" y2="78" style="stroke:${on ? 'var(--c2)' : 'var(--line)'}" stroke-width="${on ? 1.8 : 1.2}"/>`;
+    el('dbStar').innerHTML = edge(44, 30, act.t) + edge(176, 30, act.r) + edge(110, 126, act.c) +
+      node(14, 18, 62, 24, 'TEMPS', act.t) + node(144, 18, 64, 24, 'RÉGION', act.r) + node(76, 114, 68, 24, 'CATÉGORIE', act.c) +
+      `<rect x="72" y="62" width="76" height="32" rx="2" style="fill:var(--ink)"/><text x="110" y="82" text-anchor="middle" style="font:500 9.5px var(--mono);fill:var(--paper)">COMMANDES</text>`;
+    const ctx = [st.q ? 'T' + st.q : 'année', st.regs.size === 4 ? 'toutes régions' : [...st.regs].sort().map(i => REG[i]).join(', '), st.cat < 0 ? 'toutes catégories' : CAT[st.cat]].join(' · ');
+    el('dbDax').innerHTML = [`<span class="ln on">CA = SUM ( Commandes[Montant] )</span>`, `<span class="ln on">Panier moyen = DIVIDE ( [CA], [Nb commandes] )</span>`,
+      `<span class="ln${st.q > 1 ? ' on' : ''}">Évolution = DIVIDE ( [CA] - [CA T-1], [CA T-1] )</span>`, `<span class="ln on cm-c">-- Contexte : ${esc(ctx)}</span>`].join('');
+  }
+  segSingle(el('dbQ'), 'q', v => { st.q = Number(v); render(); });
+  segSingle(el('dbC'), 'c', v => { st.cat = Number(v); render(); });
+  const toggleReg = rg => { if (st.regs.has(rg)){ if (st.regs.size > 1) st.regs.delete(rg); } else st.regs.add(rg); render(); };
+  el('dbR').addEventListener('click', e => { const b = e.target.closest('button'); if (b) toggleReg(Number(b.dataset.r)); });
+  el('dbRegions').addEventListener('click', e => { const b = e.target.closest('.hb'); if (b) toggleReg(Number(b.dataset.r)); });
+  el('dbReset').addEventListener('click', () => { st.q = 0; st.regs = new Set([0, 1, 2, 3]); st.cat = -1; render(); });
+  const ms = el('dbMonths');
+  ms.addEventListener('pointermove', e => {
+    const h = e.target.closest('.mhit'); if (!h){ hideTip(); return; }
+    const m = Number(h.dataset.m), v = mvals[m];
+    showTip(`<b>${MONTHS[m][0].toUpperCase() + MONTHS[m].slice(1)}</b><br>CA : ${eur(v[0])}<br>${int(v[1])} commandes<br>Cliquer pour filtrer sur T${Math.floor(m/3) + 1}`, e.clientX, e.clientY);
+  });
+  ms.addEventListener('pointerleave', hideTip);
+  ms.addEventListener('click', e => { const h = e.target.closest('.mhit'); if (h){ const q = Math.floor(Number(h.dataset.m)/3) + 1; st.q = st.q === q ? 0 : q; render(); } });
+  render();
+})();
+
+/* ---------- skills × projects matrix ---------- */
+(function(){
+  const t = document.getElementById('mx'); if (!t) return;
+  const COLS = [['orange', 'Orange', 'orange'], ['falcon', 'Falcon', 'falcon'], ['esenca', 'ESENCA', 'esenca'], ['bcn', 'Airbnb BCN', 'bcn-roc'], ['off', 'Open Food Facts', 'off'], ['nosql', 'NoSQL', 'nosql'], ['onto', 'OntoThyroid', 'onto-kappa']];
+  const ROWS = [
+    ['Python', 'eng', {orange: 'Pipeline automatisé interrogeant une API REST', bcn: 'Modèles et réseau de neurones en NumPy', onto: 'Peuplement de l’ontologie via owlready2'}],
+    ['Pandas · NumPy', 'eng', {orange: 'Nettoyage et contrôle qualité avec Pandas', bcn: 'Réseau de neurones écrit en NumPy'}],
+    ['Nettoyage de données', 'eng', {orange: 'Nettoyage, structuration, contrôle qualité', falcon: 'Normalisation et contrôle qualité', off: 'Nettoyage sur plusieurs millions de lignes'}],
+    ['API & collecte web', 'eng', {orange: 'Collecte via API REST', off: 'Collecte via API', nosql: 'Collecte web automatisée'}],
+    ['scikit-learn', 'ml', {bcn: 'HistGradientBoosting, Ridge'}],
+    ['Régression', 'ml', {falcon: 'Modèle prédictif par régression', bcn: 'Régression des prix (Ridge, R² 0,60)'}],
+    ['Classification', 'ml', {bcn: 'Annonces sans licence (AUC 0,92)', onto: 'J48, Random Forest, Naive Bayes'}],
+    ['Validation & métriques', 'ml', {bcn: 'Validation croisée groupée par hôte, audit des fuites', onto: 'Validation croisée 10 plis, Kappa 0,98'}],
+    ['Weka', 'ml', {onto: 'Fouille de données : J48 à 99,7 % d’exactitude'}],
+    ['Power BI', 'bi', {falcon: 'Restitution des résultats aux équipes métier', esenca: '3 tableaux de bord déployés'}],
+    ['DAX · modèle en étoile', 'bi', {esenca: 'Mesures DAX et modélisation en étoile'}],
+    ['SQL (HFSQL)', 'db', {esenca: 'Requêtage de plusieurs millions de lignes'}],
+    ['MongoDB · Neo4j', 'db', {nosql: 'Migration et modélisation de données'}],
+    ['Protégé · OWL · SWRL', 'sante', {onto: '300+ classes, règles SWRL, requêtes SPARQL'}]
+  ];
+  let html = `<thead><tr><th scope="col" class="mx-corner">Compétence</th>${COLS.map((c, j) => `<th scope="col"><button type="button" class="mx-col" data-j="${j}" data-fig="${c[2]}" aria-label="Ouvrir le dossier ${esc(c[1])}">${esc(c[1])}</button></th>`).join('')}<th scope="col" class="mx-n">Projets</th></tr></thead><tbody>`;
+  ROWS.forEach(([name, cat, ev], i) => {
+    const n = Object.keys(ev).length;
+    html += `<tr data-cat="${cat}"><th scope="row">${esc(name)}</th>` + COLS.map((c, j) => ev[c[0]]
+      ? `<td data-i="${i}" data-j="${j}"><span class="mx-dot" role="img" aria-label="${esc(name)} sur ${esc(c[1])} : ${esc(fr(ev[c[0]]))}"></span></td>`
+      : `<td data-i="${i}" data-j="${j}"></td>`).join('') + `<td class="mx-n">${n}</td></tr>`;
+  });
+  t.insertAdjacentHTML('beforeend', html + '</tbody>');
+  const clear = () => t.querySelectorAll('.hl,.hot').forEach(x => x.classList.remove('hl', 'hot'));
+  function light(i, j){
+    clear();
+    if (j != null) t.querySelectorAll(`[data-j="${j}"]`).forEach(x => (x.tagName === 'BUTTON' ? x.parentElement : x).classList.add('hl'));
+    if (i != null){ const tr = t.tBodies[0].rows[i]; [...tr.cells].forEach(x => x.classList.add('hl')); }
+  }
+  t.addEventListener('pointermove', e => {
+    const td = e.target.closest('td[data-j]'), cb = e.target.closest('.mx-col');
+    if (cb){ light(null, Number(cb.dataset.j)); hideTip(); return; }
+    if (!td){ clear(); hideTip(); return; }
+    const i = Number(td.dataset.i), j = Number(td.dataset.j); light(i, j);
+    const ev = ROWS[i][2][COLS[j][0]];
+    if (ev){ td.classList.add('hot'); showTip(`<b>${esc(ROWS[i][0])} · ${esc(COLS[j][1])}</b><br>${esc(fr(ev))}`, e.clientX, e.clientY); } else hideTip();
+  });
+  t.addEventListener('pointerleave', () => { clear(); hideTip(); });
+  t.addEventListener('click', e => { const cb = e.target.closest('.mx-col'); if (cb) goDetail(cb.dataset.fig); });
+  const mf = document.getElementById('mxF');
+  mf.addEventListener('click', e => {
+    const b = e.target.closest('[data-mx]'); if (!b) return;
+    mf.querySelectorAll('[data-mx]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    [...t.tBodies[0].rows].forEach(tr => { tr.hidden = b.dataset.mx !== 'all' && tr.dataset.cat !== b.dataset.mx; });
+  });
+})();
+
+/* ---------- chronology ---------- */
+(function(){
+  const grid = document.getElementById('chronoGrid'); if (!grid) return;
+  const T0 = 2022.5, T1 = 2028.75, ym = (y, m) => y + (m - 1)/12;
+  const ROWS = [
+    {name:'BUT Science des données', sub:'Université de Lille', k:'f', a:ym(2022, 9), b:ym(2025, 7), when:'2022 – 2025'},
+    {name:'ESENCA', sub:'Analyste BI · stage', k:'e', a:ym(2024, 4), b:ym(2024, 7), when:'04/2024 – 06/2024', open:'esenca'},
+    {name:'Falcon Marketing', sub:'Data Analyst · stage', k:'e', a:ym(2025, 3), b:ym(2025, 8), when:'03/2025 – 07/2025', open:'falcon'},
+    {name:'Orange (B2B)', sub:'Data Analyst · mission', k:'e', a:ym(2025, 9), b:ym(2026, 1), when:'09/2025 – 12/2025', open:'orange'},
+    {name:'Master MIAS', sub:'Centrale Lille & ILIS', k:'f', a:ym(2026, 9), b:ym(2028, 7), when:'2026 – 2028'},
+    {name:'Stage recherché', sub:'6 mois', k:'o', a:ym(2027, 3), b:ym(2027, 9), when:'à partir de mars 2027'},
+    {name:'Alternance possible', sub:'M2 · 3 sem. / 1 sem.', k:'o', a:ym(2027, 9), b:ym(2028, 7), when:'M2, 2027 – 2028'}
+  ];
+  const X = t => ((t - T0)/(T1 - T0)*100).toFixed(2);
+  let html = '<div class="ch-lines" aria-hidden="true">';
+  for (let y = 2023; y <= 2028; y++) html += `<i style="left:${X(y)}%"></i>`;
+  const now = new Date(), tn = now.getFullYear() + (now.getMonth() + (now.getDate() - 1)/31)/12;
+  if (tn > T0 && tn < T1) html += `<div class="ch-now" style="left:${X(tn)}%"><span>Aujourd’hui</span></div>`;
+  html += '</div>';
+  ROWS.forEach((r, i) => {
+    html += `<div class="ch-row"><div class="ch-name">${r.name.replace('&', '&amp;')}<small>${r.sub.replace('&', '&amp;')}</small></div><div class="ch-track">` +
+      `<button type="button" class="ch-bar ${r.k}" data-i="${i}" style="left:${X(r.a)}%;width:${(X(r.b) - X(r.a)).toFixed(2)}%" aria-label="${r.name.replace('&', '&amp;')}, ${r.sub.replace('&', '&amp;')}, ${r.when}${r.open ? ' : ouvrir le dossier' : ''}"></button></div></div>`;
+  });
+  html += `<div class="ch-axis" aria-hidden="true"><span></span><div class="ch-ticks">${[2023, 2024, 2025, 2026, 2027, 2028].map(y => `<span style="left:${X(y)}%">${y}</span>`).join('')}</div></div>`;
+  grid.innerHTML = html;
+  grid.querySelectorAll('.ch-bar').forEach(b => {
+    const r = ROWS[Number(b.dataset.i)], t = `<b>${r.name.replace('&', '&amp;')}</b><br>${r.sub.replace('&', '&amp;')}<br>${r.when}${r.open ? '<br>Cliquer pour ouvrir le dossier' : ''}`;
+    b.addEventListener('mouseenter', e => showTip(t, e.clientX, e.clientY));
+    b.addEventListener('mousemove', e => showTip(t, e.clientX, e.clientY));
+    b.addEventListener('mouseleave', hideTip);
+    b.addEventListener('focus', () => { const q = b.getBoundingClientRect(); showTip(t, q.left + q.width/2, q.bottom); });
+    b.addEventListener('blur', hideTip);
+    if (r.open) b.addEventListener('click', () => { hideTip(); goDetail(r.open); });
+  });
+})();
+
+/* ---------- pill progress + current section ---------- */
+const pill = document.querySelector('.pill'), prog = document.getElementById('prog'), markSec = document.getElementById('markSec'), heroEl = document.getElementById('top');
+const SECS = [['anamnese', 'Anamnèse'], ['resultats', 'I — Résultats'], ['protocole', 'II — Protocole'], ['labo', 'Laboratoire'], ['parcours', 'III — Parcours'], ['posologie', 'Posologie'], ['contact', 'Contact']]
+  .map(([id, name]) => [document.getElementById(id), name]).filter(x => x[0]);
+function updatePill(){
+  const max = document.documentElement.scrollHeight - innerHeight;
+  prog.style.transform = `scaleX(${max > 0 ? Math.min(1, Math.max(0, scrollY / max)).toFixed(4) : 0})`;
+  pill.classList.toggle('scrolled', heroEl.getBoundingClientRect().bottom < 90);
+  let name = '';
+  for (const [el, n] of SECS) if (el.getBoundingClientRect().top < innerHeight * .4) name = n;
+  if (markSec.textContent !== name) markSec.textContent = name;
+}
+updatePill();
+
+/* ---------- hero: draggable ontology graph ---------- */
+(function(){
+  const stage = document.getElementById('stage'), cv = document.getElementById('graph'), grab = document.getElementById('grab');
+  const ctx = cv.getContext('2d');
+  const NODES = [['ds','Data science',0],
+    ['eng','Data engineering',1],['ml','Machine learning',1],['bi','BI & dataviz',1],['db','Bases de données',1],['sante','IA en santé',1],
+    ['py','Python',2],['pandas','Pandas',2],['api','API REST',2],['skl','scikit-learn',2],['gb','Gradient Boosting',2],['dl','Deep learning',2],
+    ['pbi','Power BI',2],['dax','DAX',2],['sql','SQL',2],['mongo','MongoDB',2],['neo','Neo4j',2],['onto','Ontologies',2],['clin','Données cliniques',2],
+    ['orange','Orange',3],['falcon','Falcon',3],['esenca','ESENCA',3],['bcn','Airbnb BCN',3],['off','Open Food Facts',3],['ontothy','OntoThyroid',3]];
+  const EDGES = [['ds','eng'],['ds','ml'],['ds','bi'],['ds','db'],['ds','sante'],
+    ['eng','py'],['eng','pandas'],['eng','api'],['ml','skl'],['ml','gb'],['ml','dl'],['bi','pbi'],['bi','dax'],['db','sql'],['db','mongo'],['db','neo'],['sante','onto'],['sante','clin'],
+    ['orange','api'],['orange','pandas'],['falcon','ml'],['falcon','pbi'],['esenca','pbi'],['esenca','sql'],['bcn','gb'],['bcn','skl'],['off','api'],['off','mongo'],['ontothy','onto'],['ontothy','clin']];
+  const PARENT = {eng:'ds',ml:'ds',bi:'ds',db:'ds',sante:'ds',py:'eng',pandas:'eng',api:'eng',skl:'ml',gb:'ml',dl:'ml',pbi:'bi',dax:'bi',sql:'db',mongo:'db',neo:'db',onto:'sante',clin:'sante',
+    orange:'eng',falcon:'ml',bcn:'ml',esenca:'bi',off:'db',ontothy:'sante'};
+  let W = 0, H = 0, dpr = 1, sc = 1, drag = null, hover = null, running = false, settleFrames = 0, visible = true, pattern = null;
+  let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const nodes = NODES.map(n => ({id: n[0], label: n[1], lvl: n[2], x: 0, y: 0, vx: 0, vy: 0, fx: 0, fy: 0, ph: rnd() * 6.28}));
+  const byId = Object.fromEntries(nodes.map(n => [n.id, n]));
+  const links = EDGES.map(e => [byId[e[0]], byId[e[1]]]);
+  const center = () => [W * (narrow.matches ? .5 : .52), H * (narrow.matches ? .5 : .54)];
+
+  function size(){
+    const r = stage.getBoundingClientRect(), oW = W, oH = H;
+    W = Math.max(1, r.width); H = Math.max(1, r.height); dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    sc = Math.max(.55, Math.min(1.15, Math.min(W, H) / 640));
+    if (oW && oH){ nodes.forEach(n => { n.x *= W/oW; n.y *= H/oH; }); }
+    const p = document.createElement('canvas'); p.width = p.height = 16 * dpr;
+    const pc = p.getContext('2d'); pc.scale(dpr, dpr); pc.fillStyle = 'rgba(238,232,220,.075)'; pc.fillRect(7, 7, 1.3, 1.3);
+    pattern = ctx.createPattern(p, 'repeat'); if (pattern && pattern.setTransform) pattern.setTransform(new DOMMatrix().scale(1/dpr));
+    measure();
+  }
+  function measure(){
+    for (const n of nodes){
+      const big = n.lvl === 0;
+      ctx.font = `500 ${big ? 12 : 10.5}px "IBM Plex Mono", ui-monospace, Menlo, monospace`;
+      if ('letterSpacing' in ctx) ctx.letterSpacing = '0.08em';
+      const hidden = narrow.matches && n.lvl === 2;
+      n.bw = hidden ? 10 : (big ? 18 : 11) + ctx.measureText(n.label.toUpperCase()).width + 6;
+    }
+  }
+  function init(){
+    const [cx, cy] = center(), ang = {ds: 0};
+    byId.ds.x = cx; byId.ds.y = cy;
+    const l1 = nodes.filter(n => n.lvl === 1);
+    l1.forEach((n, i) => { const a = -Math.PI/2 + i * 2*Math.PI/l1.length; ang[n.id] = a; n.x = cx + Math.cos(a)*120*sc; n.y = cy + Math.sin(a)*120*sc; });
+    const kids = {};
+    nodes.forEach(n => { const par = PARENT[n.id]; if (par && n.lvl >= 2) (kids[par] = kids[par] || []).push(n); });
+    Object.keys(kids).forEach(par => {
+      const arr = kids[par], base = ang[par] || 0;
+      arr.forEach((n, j) => { const a = base + (j - (arr.length - 1)/2) * .34; ang[n.id] = a; const r = (n.lvl === 3 ? 290 : 205) * sc; n.x = cx + Math.cos(a)*r; n.y = cy + Math.sin(a)*r; });
+    });
+    for (let k = 0; k < 600; k++) step(0, false);
+  }
+  function step(t, wander){
+    const [cx, cy] = center(), REP = 2600 * sc * sc, K = .03, C = .0036;
+    for (const n of nodes){ n.fx = 0; n.fy = 0; }
+    for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++){
+      const a = nodes[i], b = nodes[j]; let dx = a.x - b.x, dy = a.y - b.y; const d2 = dx*dx + dy*dy + .01, d = Math.sqrt(d2), f = REP / d2;
+      dx /= d; dy /= d; a.fx += dx*f; a.fy += dy*f; b.fx -= dx*f; b.fy -= dy*f;
+      const ox = Math.min(a.x + (a.bw || 0), b.x + (b.bw || 0)) - Math.max(a.x - 8, b.x - 8), oy = 20 - Math.abs(a.y - b.y);
+      if (ox > 0 && oy > 0){ const dir = a.y <= b.y ? -1 : 1, push = oy * .09; a.fy += dir*push; b.fy -= dir*push; const hx = Math.min(ox, 30) * .012 * (a.x <= b.x ? -1 : 1); a.fx += hx; b.fx -= hx; }
+    }
+    for (const [a, b] of links){
+      const L = (a.lvl === 0 || b.lvl === 0 ? 118 : (a.lvl === 3 || b.lvl === 3 ? 92 : 70)) * sc;
+      let dx = b.x - a.x, dy = b.y - a.y; const d = Math.hypot(dx, dy) || .01, f = K * (d - L);
+      dx /= d; dy /= d; a.fx += dx*f; a.fy += dy*f; b.fx -= dx*f; b.fy -= dy*f;
+    }
+    const pad = 22, padR = 26, padT = narrow.matches ? 30 : 86;
+    for (const n of nodes){
+      n.fx += (cx - n.x) * C; n.fy += (cy - n.y) * C;
+      if (wander){ n.fx += Math.cos(t*.0006 + n.ph) * .05; n.fy += Math.sin(t*.0005 + n.ph*1.3) * .05; }
+      if (n === drag){ n.vx = n.vy = 0; continue; }
+      n.vx = (n.vx + n.fx) * .86; n.vy = (n.vy + n.fy) * .86;
+      n.x = Math.max(pad, Math.min(W - padR, n.x + n.vx)); n.y = Math.max(padT, Math.min(H - pad - 22, n.y + n.vy));
+    }
+  }
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    if (pattern){ ctx.fillStyle = pattern; ctx.fillRect(0, 0, W, H); }
+    ctx.save(); ctx.lineCap = 'round'; ctx.setLineDash([1.5, 4.2]); ctx.lineWidth = 1.2;
+    for (const [a, b] of links){
+      const hot = hover && (a === hover || b === hover) || drag && (a === drag || b === drag);
+      ctx.strokeStyle = hot ? 'rgba(221,163,90,.85)' : 'rgba(238,232,220,.36)';
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+    ctx.restore();
+    ctx.textBaseline = 'middle';
+    for (const n of nodes){
+      const act = n === hover || n === drag;
+      if (n.lvl === 0){
+        ctx.save(); ctx.setLineDash([1.2, 3.4]); ctx.strokeStyle = 'rgba(221,163,90,.55)'; ctx.lineWidth = 1.2;
+        [20, 30].forEach(r => { ctx.beginPath(); ctx.arc(n.x, n.y, r * Math.min(1.1, sc + .15), 0, 6.283); ctx.stroke(); });
+        ctx.restore();
+        ctx.fillStyle = '#DDA35A'; ctx.beginPath(); ctx.arc(n.x, n.y, act ? 12 : 10, 0, 6.283); ctx.fill();
+      } else if (n.lvl === 3){
+        ctx.strokeStyle = '#DDA35A'; ctx.lineWidth = 1.4; const s = act ? 6 : 4.5;
+        ctx.strokeRect(n.x - s, n.y - s, s*2, s*2);
+      } else {
+        const r = n.lvl === 1 ? 5.5 : 3.4;
+        if (n.lvl === 1){ ctx.strokeStyle = 'rgba(238,232,220,.28)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(n.x, n.y, r + 4.5, 0, 6.283); ctx.stroke(); }
+        ctx.fillStyle = act ? '#DDA35A' : '#EEE8DC'; ctx.beginPath(); ctx.arc(n.x, n.y, act ? r + 1.5 : r, 0, 6.283); ctx.fill();
+      }
+      const big = n.lvl === 0;
+      if (narrow.matches && n.lvl === 2 && !act) continue;
+      ctx.font = `500 ${big ? 12 : 10.5}px "IBM Plex Mono", ui-monospace, Menlo, monospace`;
+      if ('letterSpacing' in ctx) ctx.letterSpacing = '0.08em';
+      const txt = n.label.toUpperCase(), tw = ctx.measureText(txt).width, off = big ? 18 : 11;
+      const left = n.x + off + tw > W - 10;
+      ctx.textAlign = left ? 'right' : 'left';
+      ctx.fillStyle = big || act ? '#EEE8DC' : (n.lvl === 3 ? '#E3B271' : 'rgba(238,232,220,.74)');
+      ctx.fillText(txt, left ? n.x - off : n.x + off, n.y + .5);
+    }
+  }
+  function loop(t){
+    if (!visible && !drag){ running = false; return; }
+    const wander = !rm.matches;
+    step(t, wander); draw();
+    if (!wander && !drag){
+      const e = nodes.reduce((s, n) => s + Math.abs(n.vx) + Math.abs(n.vy), 0);
+      if (e < .02 * nodes.length && ++settleFrames > 30){ running = false; return; }
+    }
+    requestAnimationFrame(loop);
+  }
+  function kick(){ settleFrames = 0; if (!running){ running = true; requestAnimationFrame(loop); } }
+  const PROJ_FIG = {orange:'orange', falcon:'falcon', esenca:'esenca', bcn:'bcn-roc', off:'off', ontothy:'onto-kappa'};
+  const DOMS = ['eng', 'ml', 'bi', 'db', 'sante'];
+  let downAt = null;
+  const badge = n => !n ? 'Déplacer' : (PROJ_FIG[n.id] ? 'Ouvrir' : 'Filtrer');
+  function actOn(n){
+    if (PROJ_FIG[n.id]) { goDetail(PROJ_FIG[n.id]); return; }
+    const f = n.id === 'ds' ? 'all' : (DOMS.includes(n.id) ? n.id : PARENT[n.id]);
+    if (f){ applyFilter(f); document.getElementById('resultats').scrollIntoView({behavior: rm.matches ? 'auto' : 'smooth'}); }
+  }
+  const pos = e => { const r = cv.getBoundingClientRect(); return {x: e.clientX - r.left, y: e.clientY - r.top}; };
+  function hit(p){ let best = null, bd = 26 * 26; for (const n of nodes){ const d = (n.x - p.x)**2 + (n.y - p.y)**2; if (d < bd){ bd = d; best = n; } } return best; }
+  function moveGrab(e){ if (e.pointerType !== 'mouse') return; const p = pos(e); grab.style.left = p.x + 'px'; grab.style.top = p.y + 'px'; }
+  cv.addEventListener('pointerdown', e => {
+    const n = hit(pos(e)); if (!n) return;
+    drag = n; downAt = {x: e.clientX, y: e.clientY, n}; try { cv.setPointerCapture(e.pointerId); } catch (_){}
+    const p = pos(e); n.x = p.x; n.y = p.y; cv.style.cursor = 'grabbing'; grab.textContent = 'Lâcher'; kick();
+  });
+  cv.addEventListener('pointermove', e => {
+    const p = pos(e);
+    if (drag){ drag.x = Math.max(10, Math.min(W - 10, p.x)); drag.y = Math.max(10, Math.min(H - 10, p.y)); kick(); }
+    else { const h = hit(p); if (h !== hover){ hover = h; grab.classList.toggle('big', !!h); grab.textContent = badge(h); cv.style.cursor = h ? 'pointer' : 'default'; kick(); } }
+    moveGrab(e);
+  });
+  const end = e => {
+    const d = downAt; downAt = null;
+    if (drag){ drag = null; cv.style.cursor = hover ? 'pointer' : 'default'; grab.textContent = badge(hover); kick(); }
+    if (d && e && e.type === 'pointerup' && Math.hypot(e.clientX - d.x, e.clientY - d.y) < 6) actOn(d.n);
+  };
+  cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
+  cv.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse'){ grab.classList.add('on'); moveGrab(e); } });
+  cv.addEventListener('pointerleave', () => { grab.classList.remove('on', 'big'); if (hover){ hover = null; kick(); } });
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) kick(); }).observe(stage);
+  }
+  if ('ResizeObserver' in window){ new ResizeObserver(() => { size(); kick(); }).observe(stage); }
+  size(); init(); draw(); kick();
+})();
+})();
+</script>
+</body>
+</html>
